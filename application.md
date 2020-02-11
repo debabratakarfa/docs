@@ -16,7 +16,9 @@ app := fiber.New()
 
 Служите статическим файлам, таким как **изображения** , файлы **CSS** и **JavaScript** , вы можете использовать метод **Static** .
 
-{% hint style = "info"%} По умолчанию этот метод отправляет файлы `index.html` в ответ на запрос к каталогу. {% endhint%}
+{% hint style="info" %}
+По умолчанию этот метод отправляет файлы `index.html` в ответ на запрос к каталогу.
+{% endhint %}
 
 #### Подпись
 
@@ -47,9 +49,11 @@ app.Static("./public")
 app.Static("./files")
 ```
 
-{% hint style = "info"%} Используйте кеш обратного прокси-сервера, такой как [NGINX,](https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/) для повышения производительности обслуживания статических активов. {% endhint%}
+{% hint style="info" %}
+Используйте кеш обратного прокси-сервера, такой как [NGINX,](https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/) для повышения производительности обслуживания статических активов.
+{% endhint %}
 
-Чтобы создать префикс виртуального пути ( *где путь фактически не существует в файловой системе* ) для файлов, обслуживаемых методом **Static** , укажите путь префикса для статического каталога, как показано ниже:
+Чтобы создать префикс виртуального пути \( _где путь фактически не существует в файловой системе_ \) для файлов, обслуживаемых методом **Static** , укажите путь префикса для статического каталога, как показано ниже:
 
 ```go
 app.Static("/static", "./public")
@@ -122,7 +126,9 @@ app.Listen(443, "server.crt", "server.key")
 
 Вы можете изменить настройки [сервера](https://github.com/valyala/fasthttp/blob/master/server.go#L150) **Fasthttp по** [умолчанию](https://github.com/valyala/fasthttp/blob/master/server.go#L150) через экземпляр **Fiber** . Эти настройки должны быть установлены **до** метода [Listen](application.md#listen) .
 
-{% hint style = "danger"%} Изменяйте эти настройки, только если вы знаете, **что** делаете. {% endhint%}
+{% hint style="danger" %}
+Изменяйте эти настройки, только если вы знаете, **что** делаете.
+{% endhint %}
 
 ```go
 app.Engine.Concurrency = 256 * 1024
@@ -147,11 +153,11 @@ app.Engine.KeepHijackedConns = false
 
 ### Prefork
 
-Параметр Prefork позволяет использовать параметр сокета [**SO_REUSEPORT**](https://lwn.net/Articles/542629/) , который доступен в более новых версиях многих операционных систем, включая **DragonFly BSD** и **Linux** (версия ядра **3.9** и выше). Это приведет к появлению нескольких процессов Go, прослушивающих один и тот же порт.
+Параметр Prefork позволяет использовать параметр сокета [**SO\_REUSEPORT**](https://lwn.net/Articles/542629/) , который доступен в более новых версиях многих операционных систем, включая **DragonFly BSD** и **Linux** \(версия ядра **3.9** и выше\). Это приведет к появлению нескольких процессов Go, прослушивающих один и тот же порт.
 
 **У NGINX** есть отличная статья о [Socket Sharding](https://www.nginx.com/blog/socket-sharding-nginx-release-1-9-1/) , эти фотографии взяты из той же статьи.
 
-![Schema, when Prefork disabled (by default)](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-1-e1432652484191.png)
+![Schema, when Prefork disabled \(by default\)](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-1-e1432652484191.png)
 
 ![Schema, when Prefork enabled](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-e1432652376641.png)
 
@@ -185,9 +191,9 @@ app.Server = "Windows 95" // => Server: Windows 95
 
 ### Баннер
 
-При запуске приложения Fiber консоль распечатает баннер, содержащий версию пакета и порт прослушивания. *Это включено по умолчанию.*
+При запуске приложения Fiber консоль распечатает баннер, содержащий версию пакета и порт прослушивания. _Это включено по умолчанию._
 
-![](../../.gitbook/assets/screenshot-2020-02-08-at-13.18.27.png)
+![](.gitbook/assets/screenshot-2020-02-08-at-13.18.27.png)
 
 Чтобы отключить его, установите `Banner` в `false` :
 
@@ -199,7 +205,9 @@ app.Banner = false // Hide banner
 
 Тестирование вашего приложения выполняется методом **Test** .
 
-{% hint style = "info"%} Метод в основном используется для `_test.go` файлов и отладки приложений. {% endhint%}
+{% hint style="info" %}
+Метод в основном используется для `_test.go` файлов и отладки приложений.
+{% endhint %}
 
 #### Подпись
 
@@ -214,7 +222,7 @@ app.Test(req *http.Request) (*http.Response, error)
 app.Get("/", func(c *Ctx) {
   fmt.Println(c.BaseURL())              // => http://google.com
   fmt.Println(c.Get("X-Custom-Header")) // => hi
-  
+
   c.Send("hello, World!")
 })
 
@@ -231,3 +239,4 @@ if resp.StatusCode == 200 {
   fmt.Println(string(body)) // => Hello, World!
 }
 ```
+
