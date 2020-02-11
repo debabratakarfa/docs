@@ -1,35 +1,33 @@
 ---
-description: The app instance conventionally denotes the Fiber application.
+description: 该应用程序实例通常表示Fiber应用程序。
 ---
 
-# 🚀  Application
+# 🚀申请
 
-## New
+## 新
 
-Method creates a new **Fiber** named instance.
+方法创建一个新的**光纤**命名实例。
 
 ```go
 app := fiber.New()
 ```
 
-## Static
+## 静态的
 
-Serve static files such as **images**, **CSS** and **JavaScript** files, you can use the **Static** method.
+提供静态文件，例如**图像** ， **CSS**和**JavaScript**文件，可以使用**Static**方法。
 
-{% hint style="info" %}
-By default, this method will send `index.html` files in response to a request on a directory.
-{% endhint %}
+{％hint style =“ info”％}默认情况下，此方法将发送`index.html`文件以响应对目录的请求。 {％endhint％}
 
-#### Signature
+#### 签名
 
 ```go
 app.Static(root string)         // => without prefix
 app.Static(prefix, root string) // => with prefix
 ```
 
-#### Examples
+#### 例子
 
-Use the following code to serve files in a directory named `./public`
+使用以下代码在名为`./public`的目录中提供文件
 
 ```go
 app.Static("./public")
@@ -39,21 +37,19 @@ app.Static("./public")
 // => http://localhost:3000/css/style.css
 ```
 
-To serve from multiple directories, you can use **Static** multiple times.
+要从多个目录提供服务，可以多次使用**静态** 。
 
 ```go
 // Serve files from "./public" directory:
-app.Static("./public") 
+app.Static("./public")
 
 // Serve files from "./files" directory:
 app.Static("./files")
 ```
 
-{% hint style="info" %}
-Use a reverse proxy cache like [NGINX](https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/) to improve performance of serving static assets.
-{% endhint %}
+{％hint style =“ info”％}使用[NGINX之](https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/)类的反向代理缓存来提高提供静态资产的性能。 {％endhint％}
 
-To create a virtual path prefix \(_where the path does not actually exist in the file system_\) for files that are served by the **Static** method, specify a prefix path for the static directory, as shown below:
+要为由**Static**方法提供服务*的文件*创建虚拟路径前缀（ *该路径在文件系统中实际上不存在* ），请为静态目录指定前缀路径，如下所示：
 
 ```go
 app.Static("/static", "./public")
@@ -63,18 +59,18 @@ app.Static("/static", "./public")
 // => http://localhost:3000/static/css/style.css
 ```
 
-## Methods
+## 方法
 
-Routes an HTTP request, where **METHOD** is the [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) of the request.
+路由HTTP请求，其中**METHOD**是请求的[HTTP方法](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) 。
 
-#### Signature
+#### 签名
 
 ```go
 app.METHOD(handler func(*Ctx))              // match any path
 app.METHOD(path string, handler func(*Ctx)) // match specific path
 ```
 
-#### Example
+#### 例
 
 ```go
 // Single method
@@ -95,17 +91,17 @@ app.All(...)
 app.Use(...)
 ```
 
-## Listen
+## 听
 
-Binds and listens for connections on the specified address. This can be a `int` for port or `string` for address.
+绑定并侦听指定地址上的连接。这可以是端口的`int`或地址的`string` 。
 
-#### Signature
+#### 签名
 
 ```go
 app.Listen(address interface{}, tls ...string)
 ```
 
-#### Example
+#### 例
 
 ```go
 app.Listen(8080)
@@ -114,21 +110,19 @@ app.Listen(":8080")
 app.Listen("127.0.0.1:8080")
 ```
 
-To enable **TLS/HTTPS** you can append your **cert** and **key** path.
+要启用**TLS / HTTPS，**您可以附加**证书**和**密钥**路径。
 
 ```go
 app.Listen(443, "server.crt", "server.key")
 ```
 
-## Settings
+## 设定值
 
-### Engine
+### 发动机
 
-You can change the default **Fasthttp** [server settings](https://github.com/valyala/fasthttp/blob/master/server.go#L150) via the **Fiber** instance. These settings need to be set **before** [Listen](application.md#listen) method.
+您可以通过**光纤**实例更改默认的**Fasthttp** [服务器设置](https://github.com/valyala/fasthttp/blob/master/server.go#L150) 。这些设置需要**在** [Listen](application.md#listen)方法**之前**进行设置。
 
-{% hint style="danger" %}
-Only change these settings, if you know **what** your are doing.
-{% endhint %}
+{％hint style =“ danger”％}如果您知道自己在做**什么，**请仅更改这些设置。 {％endhint％}
 
 ```go
 app.Engine.Concurrency = 256 * 1024
@@ -151,23 +145,23 @@ app.Engine.NoDefaultContentType = false
 app.Engine.KeepHijackedConns = false
 ```
 
-### Prefork
+### 前叉
 
-The Prefork option enables use of the [**SO\_REUSEPORT**](https://lwn.net/Articles/542629/) socket option, which is available in newer versions of many operating systems, including **DragonFly BSD** and **Linux** \(kernel version **3.9** and later\). This will spawn multiple Go processes listening on the same port.
+Prefork选项允许使用[**SO_REUSEPORT**](https://lwn.net/Articles/542629/)套接字选项，该选项在许多操作系统的较新版本中可用，包括**DragonFly BSD**和**Linux** （内核版本**3.9**及更高版本）。这将在同一端口上侦听多个Go进程。
 
-**NGINX** has a great article about [Socket Sharding](https://www.nginx.com/blog/socket-sharding-nginx-release-1-9-1/), these pictures are taken from the same article.
+**NGINX撰写**了一篇有关[Socket Sharding](https://www.nginx.com/blog/socket-sharding-nginx-release-1-9-1/)的精彩文章，这些图片摘自同一篇文章。
 
-![Schema, when Prefork disabled \(by default\)](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-1-e1432652484191.png)
+![Schema, when Prefork disabled (by default)](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-1-e1432652484191.png)
 
 ![Schema, when Prefork enabled](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-e1432652376641.png)
 
-You can enable the Prefork feature by adding the `-prefork` flag:
+您可以通过添加`-prefork`标志来启用Prefork功能：
 
 ```bash
 ./server -prefork
 ```
 
-Or set the `Prefork` option to `true`:
+或将`Prefork`选项设置为`true` ：
 
 ```go
 app.Prefork = true // Prefork enabled
@@ -181,41 +175,39 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-### Server
+### 服务器
 
-Fiber by default does not send a [Server header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server), but you can enable this by changing the server value.
+光纤默认情况下不发送[服务器标头](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server) ，但是您可以通过更改服务器值来启用它。
 
 ```go
 app.Server = "Windows 95" // => Server: Windows 95
 ```
 
-### Banner
+### 旗帜
 
-When you launch your Fiber application, console will print a banner containing package version and listening port. _This is enabled by default._
+启动Fiber应用程序时，控制台将显示包含程序包版本和监听端口的标语。 *默认情况下启用。*
 
-![](.gitbook/assets/screenshot-2020-02-08-at-13.18.27.png)
+![](../../.gitbook/assets/screenshot-2020-02-08-at-13.18.27.png)
 
-To disable it, set `Banner` to `false`:
+要禁用它，请将`Banner`设置为`false` ：
 
 ```go
 app.Banner = false // Hide banner
 ```
 
-## Test
+## 测试
 
-Testing your application is done with the **Test** method.
+使用**Test**方法完成对应用程序的**测试** 。
 
-{% hint style="info" %}
-Method is mostly used for `_test.go` files and application debugging.
-{% endhint %}
+{％hint style =“ info”％}方法主要用于`_test.go`文件和应用程序调试。 {％endhint％}
 
-#### Signature
+#### 签名
 
 ```go
 app.Test(req *http.Request) (*http.Response, error)
 ```
 
-#### Example
+#### 例
 
 ```go
 // Create route with GET method for test:
@@ -239,4 +231,3 @@ if resp.StatusCode == 200 {
   fmt.Println(string(body)) // => Hello, World!
 }
 ```
-

@@ -1,30 +1,28 @@
 ---
-description: A hosted documentation so you can start building web apps with Fiber.
+description: 托管文档，因此您可以开始使用Fiber构建Web应用程序。
 ---
 
-# 📖  Getting started
+# 📖入门
 
 [![](https://img.shields.io/github/release/gofiber/fiber?style=flat-square)](https://github.com/gofiber/fiber/releases) [![](https://img.shields.io/badge/api-documentation-blue?style=flat-square)](https://fiber.wiki) ![](https://img.shields.io/badge/goreport-A%2B-brightgreen?style=flat-square) [![](https://img.shields.io/badge/coverage-91%25-brightgreen?style=flat-square)](https://gocover.io/github.com/gofiber/fiber) [![](https://img.shields.io/travis/gofiber/fiber/master.svg?label=linux&style=flat-square)](https://travis-ci.org/gofiber/fiber) [![](https://img.shields.io/travis/gofiber/fiber/master.svg?label=windows&style=flat-square)](https://travis-ci.org/gofiber/fiber)
 
-**Fiber** is an [Expressjs](https://github.com/expressjs/express) inspired **web framework** build on top of [Fasthttp](https://github.com/valyala/fasthttp), the **fastest** HTTP engine for [Go](https://golang.org/doc/). Designed to **ease** things up for **fast** development with **zero memory allocation** and **performance** in mind.
+**Fiber**是一个基于[Expressjs的](https://github.com/expressjs/express) **Web框架，**建立在[Fasthttp](https://github.com/valyala/fasthttp) （ [Go](https://golang.org/doc/) **最快的** HTTP引擎）的基础上。旨在**简化** **零内存分配**和**性能的**情况，以便**快速**开发。
 
-## Installing
+## 正在安装
 
-First of all, [download](https://golang.org/dl/) and install Go.
+首先， [下载](https://golang.org/dl/)并安装Go。
 
-{% hint style="success" %}
-Go **1.11** \(with enabled [Go Modules](https://golang.org/doc/go1.11#modules)\) or higher is required.
-{% endhint %}
+需要{％hint style =“ success”％}必须达到**1.11** （具有启用的[Go Modules](https://golang.org/doc/go1.11#modules) ）。 {％endhint％}
 
-Installation is done using the [`go get`](https://golang.org/cmd/go/#hdr-Add_dependencies_to_current_module_and_install_them) command:
+使用[`go get`](https://golang.org/cmd/go/#hdr-Add_dependencies_to_current_module_and_install_them)命令完成安装：
 
 ```bash
 go get -u github.com/gofiber/fiber
 ```
 
-## Hello, World!
+## 你好，世界！
 
-Embedded below is essentially simplest **Fiber** app, which you can create.
+下面嵌入的是本质上最简单的**Fiber**应用程序，您可以创建它。
 
 ```text
 touch server.go
@@ -38,13 +36,13 @@ import "github.com/gofiber/fiber"
 func main() {
   // Create new Fiber instance:
   app := fiber.New()
-
+  
   // Create route on root path, "/":
   app.Get("/", func(c *fiber.Ctx) {
     c.Send("Hello, World!")
     // => "Hello, World!"
   })
-
+  
   // Start server on "localhost" with port "8080":
   app.Listen(8080)
 }
@@ -54,17 +52,15 @@ func main() {
 go run server.go
 ```
 
-Browse to `http://localhost:8080` and you should see `Hello, World!` on the page.
+浏览到`http://localhost:8080` ，您应该看到`Hello, World!`在页面上。
 
-## Basic routing
+## 基本路由
 
-Routing refers to determining how an application responds to a client request to a particular endpoint, which is a URI \(or path\) and a specific HTTP request method \(GET, PUT, POST and so on\).
+路由是指确定应用程序如何响应客户端对特定端点的请求，该特定端点是URI（或路径）和特定的HTTP请求方法（GET，PUT，POST等）。
 
-{% hint style="info" %}
-Each route can have **one handler function**, that is executed when the route is matched.
-{% endhint %}
+{％hint style =“ info”％}每个路由可以具有**一个处理函数** ，该**函数**在匹配该路由时执行。 {％endhint％}
 
-Route definition takes the following structures:
+路由定义采用以下结构：
 
 ```go
 // Function signature
@@ -72,12 +68,12 @@ app.Method(func(*fiber.Ctx))
 app.Method(path string, func(*fiber.Ctx))
 ```
 
-* `app` is an instance of **Fiber**.
-* `Method` is an [HTTP request method](https://fiber.wiki/application#methods), in capitalization: `Get`, `Put`, `Post`, etc.
-* `path` is a path on the server.
-* `func(*fiber.Ctx)` is a callback function containing the [Context](https://fiber.wiki/context) executed when the route is matched.
+- `app`是**Fiber的**一个实例。
+- `Method`是一个[HTTP请求方法](https://fiber.wiki/application#methods) ，大写： `Get` ， `Put` ， `Post`等。
+- `path`是服务器上的路径。
+- `func(*fiber.Ctx)`是一个回调函数，其中包含匹配路由时执行的[Context](https://fiber.wiki/context) 。
 
-### Simple route
+### 简单路线
 
 ```go
 // Respond with "Hello, World!" on root path, "/":
@@ -86,7 +82,7 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-### Route with parameter
+### 带参数的路线
 
 ```go
 // GET http://localhost:8080/hello%20world
@@ -97,7 +93,7 @@ app.Get("/:value", func(c *fiber.Ctx) {
 })
 ```
 
-### Route with optional parameter
+### 使用可选参数进行路由
 
 ```go
 // GET http://localhost:8080/hello%20world
@@ -108,12 +104,12 @@ app.Get("/:value?", func(c *fiber.Ctx) {
     // => Get request with value: hello world
     return
   }
-
+  
   c.Send("Get request without value")
 })
 ```
 
-### Route with wildcard
+### 用通配符路由
 
 ```go
 // GET http://localhost:8080/api/user/john
@@ -124,18 +120,18 @@ app.Get("/api/*", func(c *fiber.Ctx) {
 })
 ```
 
-## Static files
+## 静态文件
 
-To serve static files such as **images**, **CSS** and **JavaScript** files, replace your function handler with a file or directory string.
+要提供静态文件（例如**图像** ， **CSS**和**JavaScript**文件），请用文件或目录字符串替换函数处理程序。
 
-Function signature:
+功能签名：
 
 ```go
 app.Static(root string)         // => without prefix
 app.Static(prefix, root string) // => with prefix
 ```
 
-Use the following code to serve files in a directory named `./public`:
+使用以下代码在名为`./public`的目录中提供文件：
 
 ```go
 app := fiber.New()
@@ -145,11 +141,10 @@ app.Static("./public") // => Serve all files into ./public
 app.Listen(8080)
 ```
 
-Now, you can load the files that are in the `./public` directory:
+现在，您可以加载`./public`目录中的文件：
 
 ```bash
 http://localhost:8080/hello.html
 http://localhost:8080/js/jquery.js
 http://localhost:8080/css/style.css
 ```
-

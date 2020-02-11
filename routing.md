@@ -1,21 +1,19 @@
 ---
-description: >-
-  Routing refers to how an application's endpoints (URIs) respond to client
-  requests.
+description: 路由是指应用程序的端点（URI）如何响应客户端请求。
 ---
 
-# 🔌  Routing
+# 🔌路由
 
-## Paths
+## 路径
 
-Route paths, in combination with a request method, define the endpoints at which requests can be made. Route paths can be **strings**, **string patterns** or **regular expressions**.
+路由路径与请求方法结合，定义了可以发出请求的端点。路由路径可以是**字符串** ， **字符串模式**或**正则表达式** 。
 
-**Special characters**
+**特殊的角色**
 
-* The characters `?`, `+`, `&` and `()` are subsets of their **regular expression** counterparts. 
-* The hyphen \(`-`\) and the dot \(`.`\) are interpreted literally by **string-based** paths.
+- 人物`?` ， `+` ， `&`和`()`是其**正则表达式**对应项的子集。
+- 连字符（ `-` ）和点（ `.` ）由**基于字符串的**路径按字面意义解释。
 
-**Examples of route paths based on strings**
+**基于字符串的路由路径示例**
 
 ```go
 // This route path will match requests to the root route, "/":
@@ -34,10 +32,10 @@ app.Get("/random.txt", func(c *fiber.Ctx) {
 })
 ```
 
-**Examples of route paths based on string patterns**
+**基于字符串模式的路由路径示例**
 
 ```go
-// This route path will match: 
+// This route path will match:
 // only "/acd" and "/abcd"
 app.Get("/ab?cd", func(c *fiber.Ctx) {
   c.Send("/ab?cd")
@@ -62,20 +60,16 @@ app.Get("/ab(cd)?e", func(c *fiber.Ctx) {
 })
 ```
 
-## Parameters
+## 参量
 
-Route parameters are **named URL segments** that are used to capture the values specified at their position in the URL. The captured values can be retrieved using the [Params](https://fiber.wiki/context#params) function, with the name of the route parameter specified in the path as their respective keys.
+路由参数被**命名为URL段** ，用于捕获URL中在其位置处指定的值。可以使用[Params](https://fiber.wiki/context#params)函数检索捕获的值，并将路径中指定的route参数的名称作为其各自的键。
 
-{% hint style="info" %}
-Name of the route parameter must be made up of **word characters** \(`[A-Za-z0-9_]`\).
-{% endhint %}
+{％hint style =“ info”％} route参数的名称必须由**文字字符** （ `[A-Za-z0-9_]` ）组成。 {％endhint％}
 
-{% hint style="danger" %}
-The hyphen \(`-`\) and the dot \(`.`\) are **not** interpreted literally yet.  
-Planned for **Fiber** v2.
-{% endhint %}
+{％暗示的风格=“危险”％}连字符（ `-`和点（ `.` **不**解释字面还）。
+针对**Fibre** v2进行了规划。 {％endhint％}
 
-**Example of define routes with route parameters**
+**使用路径参数定义路径的示例**
 
 ```go
 app.Get("/user/:name/books/:title", func(c *fiber.Ctx) {
@@ -92,11 +86,11 @@ app.Get("/user/:name?", func(c *fiber.Ctx) {
 })
 ```
 
-## Middleware
+## 中间件
 
-Functions, that are designed to make changes to the request or response, are called **middleware functions**. The [Next](https://github.com/gofiber/docs/tree/34729974f7d6c1d8363076e7e88cd71edc34a2ac/context/README.md#next) is a **Fiber** router function, when called, executes the **next** function that **matches** the current route.
+旨在更改请求或响应的**功能**被称为**中间件功能** 。 [下一步](https://github.com/gofiber/docs/tree/34729974f7d6c1d8363076e7e88cd71edc34a2ac/context/README.md#next)是**光纤**路由器功能，在调用时，将执行**与**当前路由**匹配**的**下一个**功能。
 
-**Example of a middleware function**
+**中间件功能示例**
 
 ```go
 app.Use(func(c *fiber.Ctx) {
@@ -117,9 +111,6 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-`Use` method path is a **mount** or **prefix** path and limits middleware to only apply to any paths requested that begin with it. This means you cannot use `:params` on the `Use` method.
+`Use`方法路径是**安装**路径或**前缀**路径，并且将中间件限制为仅应用于以其开头的任何请求路径。这意味着您不能在`Use`方法上使用`:params` 。
 
-{% hint style="info" %}
-If you are **not sure** when to use **All** or **Use**: read about the [Methods API here](https://fiber.wiki/application#methods).
-{% endhint %}
-
+{％hint style =“ info”％}如果**不确定**何时使用**All**或**Use** ：请在[此处](https://fiber.wiki/application#methods)阅读[Methods API](https://fiber.wiki/application#methods) 。 {％endhint％}
