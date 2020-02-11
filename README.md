@@ -2,7 +2,7 @@
 description: ホストされたドキュメント。Fiberを使用してWebアプリの構築を開始できます。
 ---
 
-# 📖はじめに
+# 📖 はじめに
 
 [![](https://img.shields.io/github/release/gofiber/fiber?style=flat-square)](https://github.com/gofiber/fiber/releases) [![](https://img.shields.io/badge/api-documentation-blue?style=flat-square)](https://fiber.wiki) ![](https://img.shields.io/badge/goreport-A%2B-brightgreen?style=flat-square) [![](https://img.shields.io/badge/coverage-91%25-brightgreen?style=flat-square)](https://gocover.io/github.com/gofiber/fiber) [![](https://img.shields.io/travis/gofiber/fiber/master.svg?label=linux&style=flat-square)](https://travis-ci.org/gofiber/fiber) [![](https://img.shields.io/travis/gofiber/fiber/master.svg?label=windows&style=flat-square)](https://travis-ci.org/gofiber/fiber)
 
@@ -36,13 +36,13 @@ import "github.com/gofiber/fiber"
 func main() {
   // Create new Fiber instance:
   app := fiber.New()
-  
+
   // Create route on root path, "/":
   app.Get("/", func(c *fiber.Ctx) {
     c.Send("Hello, World!")
     // => "Hello, World!"
   })
-  
+
   // Start server on "localhost" with port "8080":
   app.Listen(8080)
 }
@@ -68,10 +68,10 @@ app.Method(func(*fiber.Ctx))
 app.Method(path string, func(*fiber.Ctx))
 ```
 
-- `app`は**Fiberの**インスタンスです。
-- `Method`は、大文字の`Get` [要求](https://fiber.wiki/application#methods) 、 `Put` 、 `Post`などの[HTTP要求](https://fiber.wiki/application#methods) `Method`です。
-- `path`はサーバー上の`path`です。
-- `func(*fiber.Ctx)`は、ルートが一致したときに実行される[コンテキスト](https://fiber.wiki/context)を含むコールバック関数です。
+* `app`は**Fiberの**インスタンスです。
+* `Method`は、大文字の`Get` [要求](https://fiber.wiki/application#methods) 、 `Put` 、 `Post`などの[HTTP要求](https://fiber.wiki/application#methods) `Method`です。
+* `path`はサーバー上の`path`です。
+* `func(*fiber.Ctx)`は、ルートが一致したときに実行される[コンテキスト](https://fiber.wiki/context)を含むコールバック関数です。
 
 ### 簡単なルート
 
@@ -104,7 +104,7 @@ app.Get("/:value?", func(c *fiber.Ctx) {
     // => Get request with value: hello world
     return
   }
-  
+
   c.Send("Get request without value")
 })
 ```
@@ -148,3 +148,4 @@ http://localhost:8080/hello.html
 http://localhost:8080/js/jquery.js
 http://localhost:8080/css/style.css
 ```
+
