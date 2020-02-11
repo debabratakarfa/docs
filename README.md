@@ -69,7 +69,6 @@ go run server.go
 Определение маршрута имеет следующие структуры:
 
 ```go
-// Function signature
 app.Method(func(*fiber.Ctx))
 app.Method(path string, func(*fiber.Ctx))
 ```
