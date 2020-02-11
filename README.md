@@ -66,11 +66,11 @@ go run server.go
 Каждый маршрут \(_route_\) может иметь **одну функцию-обработчик** \(_handler_\), которая выполняется при сопоставлении маршрута.
 {% endhint %}
 
-Определение маршрута имеет следующие структуры:
+Определение маршрута имеет следующие сигнатуры:
 
 ```go
-app.Method(func(*fiber.Ctx))
-app.Method(path string, func(*fiber.Ctx))
+app.Method(func(*fiber.Ctx))              // без указания пути
+app.Method(path string, func(*fiber.Ctx)) // с использованием пути
 ```
 
 * `app` — экземпляр **Fiber**.
