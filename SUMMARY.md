@@ -8,7 +8,7 @@
 
 ## связи
 
-* [Ith Github](https://github.com/gofiber/fiber)
+* [📝 GitHub](https://github.com/gofiber/fiber)
 * [🍳 Примеры](https://github.com/gofiber/recipes)
-* [☕ купить кофе](https://www.buymeacoffee.com/fenny)
+* [☕ Купите мне кофе](https://www.buymeacoffee.com/fenny)
 

@@ -8,13 +8,11 @@ description: >-
 
 [![](https://img.shields.io/github/release/gofiber/fiber?style=flat-square)](https://github.com/gofiber/fiber/releases) [![](https://img.shields.io/badge/api-documentation-blue?style=flat-square)](https://fiber.wiki) ![](https://img.shields.io/badge/goreport-A%2B-brightgreen?style=flat-square) [![GitHub license](https://img.shields.io/badge/coverage-91%25-brightgreen?style=flat-square)](https://gocover.io/github.com/gofiber/fiber) [![Join the chat at https://gitter.im/gofiber/community](https://img.shields.io/travis/gofiber/fiber/master.svg?label=linux&style=flat-square)](https://travis-ci.org/gofiber/fiber) [![](https://img.shields.io/travis/gofiber/fiber/master.svg?label=windows&style=flat-square)](https://travis-ci.org/gofiber/fiber)
 
-**Fiber** - это вдохновленная [Expressjs](https://github.com/expressjs/express) **веб-инфраструктура,** [созданная](https://github.com/valyala/fasthttp) на основе [Fasthttp](https://github.com/valyala/fasthttp) , самого **быстрого** HTTP-движка для [Go](https://golang.org/doc/) . Разработанный, чтобы **упростить** процесс **быстрой** разработки с **нулевым распределением памяти** и **производительностью** .
+**Fiber** — это **веб фреймворк**, который был вдохновлен [Express](https://github.com/expressjs/express) и основан на [Fasthttp](https://github.com/valyala/fasthttp), самом **быстром** HTTP-движке на [Go](https://golang.org/doc/). Фреймворк был разработан с целью **упростить** процесс **быстрой** разработки **высокопроизводительных** веб-приложений с **нулевым распределением памяти**.
 
 ## Установка
 
 Прежде всего, [скачайте](https://golang.org/dl/) и установите Go.
-
-Требуется
 
 {% hint style="success" %}
 Go **1.11** \(с включенными [модулями Go](https://golang.org/doc/go1.11#modules) \) или выше.
@@ -26,9 +24,9 @@ Go **1.11** \(с включенными [модулями Go](https://golang.org
 go get -u github.com/gofiber/fiber
 ```
 
-## Привет, мир!
+## Hello, World!
 
-Ниже приведено простейшее приложение **Fiber** , которое вы можете создать.
+Ниже приведено простейшее приложение **Fiber**, которое вы можете создать.
 
 ```text
 touch server.go
@@ -40,16 +38,16 @@ package main
 import "github.com/gofiber/fiber"
 
 func main() {
-  // Create new Fiber instance:
+  // Создание нового экземплара Fiber:
   app := fiber.New()
 
-  // Create route on root path, "/":
+  // Создание маршрута для корневого адреса, "/":
   app.Get("/", func(c *fiber.Ctx) {
     c.Send("Hello, World!")
     // => "Hello, World!"
   })
 
-  // Start server on "localhost" with port "8080":
+  // Старт сервера на "localhost" с портом "8080":
   app.Listen(8080)
 }
 ```
@@ -58,17 +56,17 @@ func main() {
 go run server.go
 ```
 
-Перейдите по `http://localhost:8080` и вы должны увидеть `Hello, World!` на странице.
+После перехода по адресу `http://localhost:8080`, вы должны увидеть надпись `Hello, World!` на странице.
 
 ## Базовая маршрутизация
 
-Маршрутизация относится к определению того, как приложение отвечает на запрос клиента к конкретной конечной точке, которая является URI \(или путем\) и конкретным методом HTTP-запроса \(GET, PUT, POST и т. Д.\).
+Маршрутизация \(_routing_\) относится к определению того, как приложение отвечает на запрос клиента к конкретной конечной точке, которая является URI \(или путем\) и конкретным методом HTTP-запроса \(GET, PUT, POST и прочие\).
 
 {% hint style="info" %}
-Каждый маршрут может иметь **одну функцию-обработчик** , которая выполняется при сопоставлении маршрута.
+Каждый маршрут \(_route_\) может иметь **одну функцию-обработчик** \(_handler_\), которая выполняется при сопоставлении маршрута.
 {% endhint %}
 
-Определение маршрута принимает следующие структуры:
+Определение маршрута имеет следующие структуры:
 
 ```go
 // Function signature
@@ -76,15 +74,15 @@ app.Method(func(*fiber.Ctx))
 app.Method(path string, func(*fiber.Ctx))
 ```
 
-* `app` является экземпляром **Fiber** .
-* `Method` - это [метод HTTP-запроса](https://fiber.wiki/application#methods) , с заглавной буквы: `Get` , `Put` , `Post` и т. Д.
-* `path` - это путь на сервере.
-* `func(*fiber.Ctx)` - это функция обратного вызова, содержащая [контекст,](https://fiber.wiki/context) выполняемый при сопоставлении маршрута.
+* `app` — экземпляр **Fiber**.
+* `Method` — [метод HTTP-запроса](https://fiber.wiki/application#methods) , с заглавной буквы: `Get` , `Put` , `Post` и прочие.
+* `path` — путь на сервере.
+* `func(*fiber.Ctx)` — функция обратного вызова \(_callback_\), содержащая [контекст,](https://fiber.wiki/context) выполняемый при сопоставлении маршрута.
 
 ### Простой маршрут
 
 ```go
-// Respond with "Hello, World!" on root path, "/":
+// Возвращает "Hello, World!" при запросе на корневой адрес, "/":
 app.Get("/", func(c *fiber.Ctx) {
   c.Send("Hello, World!")
 })
@@ -117,7 +115,7 @@ app.Get("/:value?", func(c *fiber.Ctx) {
 })
 ```
 
-### Маршрут с подстановочным знаком
+### Маршрут с wildcard
 
 ```go
 // GET http://localhost:8080/api/user/john
@@ -130,13 +128,13 @@ app.Get("/api/*", func(c *fiber.Ctx) {
 
 ## Статические файлы
 
-Чтобы обслуживать статические файлы, такие как **изображения** , файлы **CSS** и **JavaScript** , замените ваш обработчик функций строкой файла или каталога.
+Чтобы ваше веб-приложение могло получить доступ к статическим файлам, таким как **изображения**, файлы **CSS** и **JavaScript**, воспользуйтесь методом **Static**.
 
-Подпись функции:
+Сигнатура функции:
 
 ```go
-app.Static(root string)         // => without prefix
-app.Static(prefix, root string) // => with prefix
+app.Static(root string)         // => без префикса
+app.Static(prefix, root string) // => с использованием префикса
 ```
 
 Используйте следующий код для обслуживания файлов в каталоге с именем `./public` :
@@ -144,12 +142,12 @@ app.Static(prefix, root string) // => with prefix
 ```go
 app := fiber.New()
 
-app.Static("./public") // => Serve all files into ./public
+app.Static("./public") // => Доступны все файлы в ./public
 
 app.Listen(8080)
 ```
 
-Теперь вы можете загрузить файлы, которые находятся в каталоге `./public` :
+Теперь вы можете получить доступ к файлам, которые находятся в каталоге `./public` :
 
 ```bash
 http://localhost:8080/hello.html
