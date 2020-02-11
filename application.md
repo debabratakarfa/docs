@@ -16,7 +16,9 @@ app := fiber.New()
 
 Servir arquivos estáticos, como **imagens** , arquivos **CSS** e **JavaScript** , você pode usar o método **Static** .
 
-{% hint style = "info"%} Por padrão, esse método envia arquivos `index.html` em resposta a uma solicitação em um diretório. {% endhint%}
+{% hint style="info" %}
+Por padrão, esse método envia arquivos `index.html` em resposta a uma solicitação em um diretório.
+{% endhint %}
 
 #### Assinatura
 
@@ -47,9 +49,11 @@ app.Static("./public")
 app.Static("./files")
 ```
 
-{% hint style = "info"%} Use um cache de proxy reverso como o [NGINX](https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/) para melhorar o desempenho da veiculação de ativos estáticos. {% endhint%}
+{% hint style="info" %}
+Use um cache de proxy reverso como o [NGINX](https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/) para melhorar o desempenho da veiculação de ativos estáticos.
+{% endhint %}
 
-Para criar um prefixo de caminho virtual ( *onde o caminho realmente não existe no sistema* de arquivos) para arquivos atendidos pelo método **Static** , especifique um caminho de prefixo para o diretório estático, conforme mostrado abaixo:
+Para criar um prefixo de caminho virtual \( _onde o caminho realmente não existe no sistema_ de arquivos\) para arquivos atendidos pelo método **Static** , especifique um caminho de prefixo para o diretório estático, conforme mostrado abaixo:
 
 ```go
 app.Static("/static", "./public")
@@ -122,7 +126,9 @@ app.Listen(443, "server.crt", "server.key")
 
 Você pode alterar as [configurações](https://github.com/valyala/fasthttp/blob/master/server.go#L150) padrão do [servidor](https://github.com/valyala/fasthttp/blob/master/server.go#L150) **Fasthttp** através da instância do **Fiber** . Essas configurações precisam ser definidas **antes do** método [Listen](application.md#listen) .
 
-{% hint style = "danger"%} Apenas altere essas configurações se você souber o **que** está fazendo. {% endhint%}
+{% hint style="danger" %}
+Apenas altere essas configurações se você souber o **que** está fazendo.
+{% endhint %}
 
 ```go
 app.Engine.Concurrency = 256 * 1024
@@ -147,11 +153,11 @@ app.Engine.KeepHijackedConns = false
 
 ### Prefork
 
-A opção Prefork permite o uso da opção de soquete [**SO_REUSEPORT**](https://lwn.net/Articles/542629/) , disponível em versões mais recentes de muitos sistemas operacionais, incluindo o **DragonFly BSD** e **Linux** (kernel versão **3.9** e posterior). Isso gerará vários processos Go ouvindo na mesma porta.
+A opção Prefork permite o uso da opção de soquete [**SO\_REUSEPORT**](https://lwn.net/Articles/542629/) , disponível em versões mais recentes de muitos sistemas operacionais, incluindo o **DragonFly BSD** e **Linux** \(kernel versão **3.9** e posterior\). Isso gerará vários processos Go ouvindo na mesma porta.
 
 **A NGINX** tem um ótimo artigo sobre o [Socket Sharding](https://www.nginx.com/blog/socket-sharding-nginx-release-1-9-1/) , essas fotos são tiradas do mesmo artigo.
 
-![Schema, when Prefork disabled (by default)](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-1-e1432652484191.png)
+![Schema, when Prefork disabled \(by default\)](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-1-e1432652484191.png)
 
 ![Schema, when Prefork enabled](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-e1432652376641.png)
 
@@ -185,9 +191,9 @@ app.Server = "Windows 95" // => Server: Windows 95
 
 ### Bandeira
 
-Quando você inicia o aplicativo Fiber, o console imprime um banner contendo a versão do pacote e a porta de atendimento. *Isso é ativado por padrão.*
+Quando você inicia o aplicativo Fiber, o console imprime um banner contendo a versão do pacote e a porta de atendimento. _Isso é ativado por padrão._
 
-![](../../.gitbook/assets/screenshot-2020-02-08-at-13.18.27.png)
+![](.gitbook/assets/screenshot-2020-02-08-at-13.18.27.png)
 
 Para desativá-lo, defina `Banner` como `false` :
 
@@ -199,7 +205,11 @@ app.Banner = false // Hide banner
 
 O teste do seu aplicativo é feito com o método **Test** .
 
-O método {% hint style = "info"%} é usado principalmente para arquivos `_test.go` e depuração de aplicativos. {% endhint%}
+O método
+
+{% hint style="info" %}
+é usado principalmente para arquivos `_test.go` e depuração de aplicativos.
+{% endhint %}
 
 #### Assinatura
 
@@ -214,7 +224,7 @@ app.Test(req *http.Request) (*http.Response, error)
 app.Get("/", func(c *Ctx) {
   fmt.Println(c.BaseURL())              // => http://google.com
   fmt.Println(c.Get("X-Custom-Header")) // => hi
-  
+
   c.Send("hello, World!")
 })
 
@@ -231,3 +241,4 @@ if resp.StatusCode == 200 {
   fmt.Println(string(body)) // => Hello, World!
 }
 ```
+

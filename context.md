@@ -1,5 +1,8 @@
 ---
-description: A estrutura Ctx representa o contexto que contém a solicitação e resposta HTTP. Possui métodos para a sequência de consulta de solicitação, parâmetros, corpo, cabeçalhos HTTP e assim por diante.
+description: >-
+  A estrutura Ctx representa o contexto que contém a solicitação e resposta
+  HTTP. Possui métodos para a sequência de consulta de solicitação, parâmetros,
+  corpo, cabeçalhos HTTP e assim por diante.
 ---
 
 # 🧠 Contexto
@@ -8,7 +11,9 @@ description: A estrutura Ctx representa o contexto que contém a solicitação e
 
 Verifica se as **extensões** ou **tipos de** **conteúdo** especificados são aceitáveis.
 
-{% hint style = "info"%} Com base no cabeçalho [Accept](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) HTTP da solicitação. {% endhint%}
+{% hint style="info" %}
+Com base no cabeçalho [Accept](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) HTTP da solicitação.
+{% endhint %}
 
 **Assinatura**
 
@@ -35,7 +40,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Verifica se o conjunto de **caracteres** especificado é aceitável.
 
-{% hint style = "info"%} Com base no cabeçalho HTTP [Accept-Charset](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset) da solicitação. {% endhint%}
+{% hint style="info" %}
+Com base no cabeçalho HTTP [Accept-Charset](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset) da solicitação.
+{% endhint %}
 
 **Assinatura**
 
@@ -59,7 +66,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Verifica se a **codificação** especificada é aceitável.
 
-{% hint style = "info"%} Com base no cabeçalho HTTP [Accept-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding) da solicitação. {% endhint%}
+{% hint style="info" %}
+Com base no cabeçalho HTTP [Accept-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding) da solicitação.
+{% endhint %}
 
 **Assinatura**
 
@@ -83,7 +92,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Verifica se o **idioma** especificado é aceitável.
 
-{% hint style = "info"%} Com base no cabeçalho HTTP do [idioma](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language) de [aceitação](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language) da solicitação. {% endhint%}
+{% hint style="info" %}
+Com base no cabeçalho HTTP do [idioma](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language) de [aceitação](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language) da solicitação.
+{% endhint %}
 
 **Assinatura**
 
@@ -107,7 +118,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Anexa o **valor** especificado ao campo de cabeçalho de resposta HTTP.
 
-{% hint style = "warning"%} Se o cabeçalho ainda **não** estiver definido, ele será criado com o valor especificado. {% endhint%}
+{% hint style="warning" %}
+Se o cabeçalho ainda **não** estiver definido, ele será criado com o valor especificado.
+{% endhint %}
 
 **Assinatura**
 
@@ -152,7 +165,7 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## BaseURL
 
-Retorna o URL base ( **protocolo** + **host** ) como uma `string` .
+Retorna o URL base \( **protocolo** + **host** \) como uma `string` .
 
 **Assinatura**
 
@@ -234,7 +247,7 @@ app.Post("/", func(c *fiber.Ctx) {
 
 ## ClearCookie
 
-Limpa **todos os** cookies do cliente ou um cookie específico por **nome** ( *definindo a data de validade no passado* ).
+Limpa **todos os** cookies do cliente ou um cookie específico por **nome** \( _definindo a data de validade no passado_ \).
 
 **Assinatura**
 
@@ -271,7 +284,9 @@ c.Cookie(name, value string, options *Cookie{})
 
 **Estrutura do cookie**
 
-{% hint style = "warning"%} A opção **Expirar** **não** será usada, se **MaxAge** estiver definido. {% endhint%}
+{% hint style="warning" %}
+A opção **Expirar** **não** será usada, se **MaxAge** estiver definido.
+{% endhint %}
 
 ```go
 &fiber.Cookie{
@@ -344,7 +359,7 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Transfere o arquivo do caminho como um `attachment` .
 
-Normalmente, os navegadores solicitam o download do usuário. Por padrão, o cabeçalho [Content-Disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition) `filename=` parâmetro é path ( *normalmente aparece na caixa de diálogo do navegador* ).
+Normalmente, os navegadores solicitam o download do usuário. Por padrão, o cabeçalho [Content-Disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition) `filename=` parâmetro é path \( _normalmente aparece na caixa de diálogo do navegador_ \).
 
 Substitua esse padrão pelo parâmetro **filename** .
 
@@ -368,7 +383,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## Fim
 
-{% hint style = "danger"%} Planejado para o **Fiber** v2. {% endhint%}
+{% hint style="danger" %}
+Planejado para o **Fiber** v2.
+{% endhint %}
 
 ## Fasthttp
 
@@ -376,7 +393,9 @@ Você ainda pode **acessar** e usar todos os métodos e propriedades do **Fastht
 
 **Assinatura**
 
-{% hint style = "info"%} Leia a [documentação](https://pkg.go.dev/github.com/valyala/fasthttp?tab=doc) do [Fasthttp](https://pkg.go.dev/github.com/valyala/fasthttp?tab=doc) para obter mais informações. {% endhint%}
+{% hint style="info" %}
+Leia a [documentação](https://pkg.go.dev/github.com/valyala/fasthttp?tab=doc) do [Fasthttp](https://pkg.go.dev/github.com/valyala/fasthttp?tab=doc) para obter mais informações.
+{% endhint %}
 
 **Exemplo**
 
@@ -394,7 +413,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Executa negociação de conteúdo no cabeçalho [Accept](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) HTTP. Ele usa [Aceita](context.md#accepts) para selecionar um formato adequado.
 
-{% hint style = "info"%} Se o cabeçalho **não** for especificado ou se não **houver** um formato adequado, será usado **texto / sem formatação** . {% endhint%}
+{% hint style="info" %}
+Se o cabeçalho **não** for especificado ou se não **houver** um formato adequado, será usado **texto / sem formatação** .
+{% endhint %}
 
 **Assinatura**
 
@@ -467,7 +488,9 @@ app.Post("/", func(c *fiber.Ctx) {
 
 ## Fresco
 
-{% hint style = "danger"%} Planejado para o **Fiber** v2. {% endhint%}
+{% hint style="danger" %}
+Planejado para o **Fiber** v2.
+{% endhint %}
 
 ## Obter
 
@@ -491,7 +514,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## HeadersSent
 
-{% hint style = "danger"%} Planejado para o **Fiber** v2. {% endhint%}
+{% hint style="danger" %}
+Planejado para o **Fiber** v2.
+{% endhint %}
 
 ## nome de anfitrião
 
@@ -555,7 +580,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Retorna o **tipo de conteúdo** correspondente, se o campo de cabeçalho HTTP do [Tipo](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) de [Conteúdo](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) da solicitação de entrada corresponder ao [tipo MIME](https://developer.mozilla.org/ru/docs/Web/HTTP/Basics_of_HTTP/MIME_types) especificado pelo parâmetro type.
 
-{% hint style = "info"%} Se a solicitação **não** tiver **um** corpo, ela retornará **false** . {% endhint%}
+{% hint style="info" %}
+Se a solicitação **não** tiver **um** corpo, ela retornará **false** .
+{% endhint %}
 
 **Assinatura**
 
@@ -579,7 +606,11 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Converte qualquer **interface** ou **string** em JSON usando o [Jsoniter](https://github.com/json-iterator/go) .
 
-O método {% hint style = "info"%} também define o cabeçalho do conteúdo como **application / json** . {% endhint%}
+O método
+
+{% hint style="info" %}
+também define o cabeçalho do conteúdo como **application / json** .
+{% endhint %}
 
 **Assinatura**
 
@@ -614,7 +645,9 @@ app.Get("/json", func(c *fiber.Ctx) {
 
 Método JSON bruto.
 
-{% hint style = "success"%} Use isso, se você **não precisar de** serialização JSON, recomendado ao trabalhar com entradas **brutas** . {% endhint%}
+{% hint style="success" %}
+Use isso, se você **não precisar de** serialização JSON, recomendado ao trabalhar com entradas **brutas** .
+{% endhint %}
 
 **Assinatura**
 
@@ -635,7 +668,9 @@ app.Get("/json", func(c *fiber.Ctx) {
 
 Método JSON bruto.
 
-{% hint style = "success"%} Use isso, se você **não precisar de** serialização JSON, recomendado ao trabalhar com entradas **brutas** . {% endhint%}
+{% hint style="success" %}
+Use isso, se você **não precisar de** serialização JSON, recomendado ao trabalhar com entradas **brutas** .
+{% endhint %}
 
 **Assinatura**
 
@@ -714,7 +749,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Método que armazena variáveis de cadeia com escopo definido para a solicitação e, portanto, disponíveis apenas para as rotas que correspondem à solicitação.
 
-{% hint style = "success"%} Isso é útil se você deseja passar alguns **valores específicos** para o próximo middleware. {% endhint%}
+{% hint style="success" %}
+Isso é útil se você deseja passar alguns **valores específicos** para o próximo middleware.
+{% endhint %}
 
 **Assinatura**
 
@@ -740,7 +777,9 @@ app.Get("/admin", func(c *fiber.Ctx) {
 })
 ```
 
-{% hint style = "info"%} Você pode colocar qualquer tipo nos **Locais** , mas não se esqueça de convertê-lo novamente quando estiver usando a variável. {% endhint%}
+{% hint style="info" %}
+Você pode colocar qualquer tipo nos **Locais** , mas não se esqueça de convertê-lo novamente quando estiver usando a variável.
+{% endhint %}
 
 ```go
 type SomeStruct struct {
@@ -891,7 +930,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 O método pode ser usado para obter os parâmetros da rota.
 
-{% hint style = "info"%} O padrão é string vazia ( `""` ), se o parâmetro **não** existir. {% endhint%}
+{% hint style="info" %}
+O padrão é string vazia \( `""` \), se o parâmetro **não** existir.
+{% endhint %}
 
 **Assinatura**
 
@@ -953,7 +994,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Esta propriedade é um objeto que contém uma propriedade para cada parâmetro de string de consulta na rota.
 
-{% hint style = "info"%} Se não houver **uma** string de consulta, ela retornará uma **string vazia** . {% endhint%}
+{% hint style="info" %}
+Se não houver **uma** string de consulta, ela retornará uma **string vazia** .
+{% endhint %}
 
 **Assinatura**
 
@@ -974,13 +1017,17 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## Alcance
 
-{% hint style = "danger"%} Planejado para o **Fiber** v2. {% endhint%}
+{% hint style="danger" %}
+Planejado para o **Fiber** v2.
+{% endhint %}
 
 ## Redirecionar
 
 Redireciona para o URL derivado do caminho especificado, com status especificado, um número inteiro positivo que corresponde a um código de status HTTP.
 
-{% hint style = "info"%} Se **não** especificado, o status será **302 Encontrado** . {% endhint%}
+{% hint style="info" %}
+Se **não** especificado, o status será **302 Encontrado** .
+{% endhint %}
 
 **Assinatura**
 
@@ -1001,13 +1048,17 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## Render
 
-{% hint style = "danger"%} Planejado para o **Fiber** v2. {% endhint%}
+{% hint style="danger" %}
+Planejado para o **Fiber** v2.
+{% endhint %}
 
 ## Rota
 
 Contém a estrutura de [rota](https://pkg.go.dev/github.com/gofiber/fiber?tab=doc#Route) atualmente correspondida.
 
-{% hint style = "warning"%} Use este método **apenas** para depuração. {% endhint%}
+{% hint style="warning" %}
+Use este método **apenas** para depuração.
+{% endhint %}
 
 **Assinatura**
 
@@ -1043,7 +1094,9 @@ c.SaveFile(fh *multipart.FileHeader, path string)
 
 **Exemplo**
 
-{% hint style = "success"%} Você pode ver um exemplo de trabalho no método [MultipartForm](https://fiber.wiki/context#multipartform) . {% endhint%}
+{% hint style="success" %}
+Você pode ver um exemplo de trabalho no método [MultipartForm](https://fiber.wiki/context#multipartform) .
+{% endhint %}
 
 ## Seguro
 
@@ -1066,7 +1119,9 @@ c.Protocol() == "https"
 
 Envia a resposta HTTP. O corpo de **envio** pode ser de qualquer tipo.
 
-{% hint style = "warning"%} O método **não é** anexado como o método [Write](https://fiber.wiki/context#write) . {% endhint%}
+{% hint style="warning" %}
+O método **não é** anexado como o método [Write](https://fiber.wiki/context#write) .
+{% endhint %}
 
 **Assinatura**
 
@@ -1088,7 +1143,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Método bruto.
 
-{% hint style = "success"%} Use isso, se você **não precisar de** asserção de tipo, recomendada para **um** desempenho **mais rápido** . {% endhint%}
+{% hint style="success" %}
+Use isso, se você **não precisar de** asserção de tipo, recomendada para **um** desempenho **mais rápido** .
+{% endhint %}
 
 **Assinatura**
 
@@ -1109,7 +1166,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Método bruto.
 
-{% hint style = "success"%} Use isso, se você **não precisar de** asserção de tipo, recomendada para **um** desempenho **mais rápido** . {% endhint%}
+{% hint style="success" %}
+Use isso, se você **não precisar de** asserção de tipo, recomendada para **um** desempenho **mais rápido** .
+{% endhint %}
 
 **Assinatura**
 
@@ -1130,7 +1189,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Transfere o arquivo do caminho especificado. Define o campo de cabeçalho HTTP de resposta do [Tipo de conteúdo com](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) base na extensão de **nomes de arquivos** .
 
-{% hint style = "info"%} O método usa **gzipping** por padrão, defina-o como **false** para desativar. {% endhint%}
+{% hint style="info" %}
+O método usa **gzipping** por padrão, defina-o como **false** para desativar.
+{% endhint %}
 
 **Assinatura**
 
@@ -1153,7 +1214,9 @@ app.Get("/not-found", func(c *fiber.Ctx) {
 
 Define o código de status e a mensagem de status correta no corpo, se o corpo da resposta estiver **vazio** .
 
-{% hint style = "success"%} Você pode encontrar todos os códigos e mensagens de status usados [aqui](https://github.com/gofiber/fiber/blob/dffab20bcdf4f3597d2c74633a7705a517d2c8c2/utils.go#L183-L244) . {% endhint%}
+{% hint style="success" %}
+Você pode encontrar todos os códigos e mensagens de status usados [aqui](https://github.com/gofiber/fiber/blob/dffab20bcdf4f3597d2c74633a7705a517d2c8c2/utils.go#L183-L244) .
+{% endhint %}
 
 **Assinatura**
 
@@ -1195,17 +1258,23 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## Assinados
 
-{% hint style = "danger"%} Planejado para o **Fiber** v2. {% endhint%}
+{% hint style="danger" %}
+Planejado para o **Fiber** v2.
+{% endhint %}
 
 ## Velho
 
-{% hint style = "danger"%} Planejado para o **Fiber** v2. {% endhint%}
+{% hint style="danger" %}
+Planejado para o **Fiber** v2.
+{% endhint %}
 
 ## Status
 
 Define o status HTTP para a resposta.
 
-{% hint style = "info"%} O método é **capaz de** uma **cadeia** . {% endhint%}
+{% hint style="info" %}
+O método é **capaz de** uma **cadeia** .
+{% endhint %}
 
 **Assinatura**
 
@@ -1271,7 +1340,9 @@ app.Get("/", func(c *fiber.Ctx) {
 
 Adiciona o campo de cabeçalho fornecido ao cabeçalho de resposta [Vary](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Vary) . Isso acrescentará o cabeçalho, se ainda não estiver listado, caso contrário, o deixará listado no local atual.
 
-{% hint style = "info"%} Vários campos são **permitidos** . {% endhint%}
+{% hint style="info" %}
+Vários campos são **permitidos** .
+{% endhint %}
 
 **Assinatura**
 
@@ -1317,7 +1388,7 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## XHR
 
-Uma propriedade booleana, isso é `true` , se o campo de cabeçalho [X-Requested-With da solicitação](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) for [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) , indicando que a solicitação foi emitida por uma biblioteca cliente (como [jQuery](https://api.jquery.com/jQuery.ajax/) ).
+Uma propriedade booleana, isso é `true` , se o campo de cabeçalho [X-Requested-With da solicitação](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) for [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) , indicando que a solicitação foi emitida por uma biblioteca cliente \(como [jQuery](https://api.jquery.com/jQuery.ajax/) \).
 
 **Assinatura**
 
@@ -1365,3 +1436,4 @@ app.Get("/", func(c *fiber.Ctx) {
   // => <some-struct><name>John</name><stars>50</stars></some-struct>
 })
 ```
+

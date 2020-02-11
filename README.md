@@ -1,5 +1,7 @@
 ---
-description: Uma documentação hospedada para que você possa começar a criar aplicativos da Web com o Fiber.
+description: >-
+  Uma documentação hospedada para que você possa começar a criar aplicativos da
+  Web com o Fiber.
 ---
 
 # 📖 Introdução
@@ -12,7 +14,9 @@ description: Uma documentação hospedada para que você possa começar a criar 
 
 Primeiro de tudo, faça o [download](https://golang.org/dl/) e instale o Go.
 
-{% hint style = "success"%} É necessário **1,11** (com os [módulos de ativação](https://golang.org/doc/go1.11#modules) ativados) ou superior. {% endhint%}
+{% hint style="success" %}
+É necessário **1,11** \(com os [módulos de ativação](https://golang.org/doc/go1.11#modules) ativados\) ou superior.
+{% endhint %}
 
 A instalação é feita usando o comando [`go get`](https://golang.org/cmd/go/#hdr-Add_dependencies_to_current_module_and_install_them) :
 
@@ -36,13 +40,13 @@ import "github.com/gofiber/fiber"
 func main() {
   // Create new Fiber instance:
   app := fiber.New()
-  
+
   // Create route on root path, "/":
   app.Get("/", func(c *fiber.Ctx) {
     c.Send("Hello, World!")
     // => "Hello, World!"
   })
-  
+
   // Start server on "localhost" with port "8080":
   app.Listen(8080)
 }
@@ -56,9 +60,11 @@ Navegue para `http://localhost:8080` e você verá `Hello, World!` na página.
 
 ## Roteamento básico
 
-O roteamento refere-se à determinação de como um aplicativo responde a uma solicitação do cliente para um terminal específico, que é um URI (ou caminho) e um método de solicitação HTTP específico (GET, PUT, POST e assim por diante).
+O roteamento refere-se à determinação de como um aplicativo responde a uma solicitação do cliente para um terminal específico, que é um URI \(ou caminho\) e um método de solicitação HTTP específico \(GET, PUT, POST e assim por diante\).
 
-{% hint style = "info"%} Cada rota pode ter **uma função de manipulador** , que é executada quando a rota é correspondida. {% endhint%}
+{% hint style="info" %}
+Cada rota pode ter **uma função de manipulador** , que é executada quando a rota é correspondida.
+{% endhint %}
 
 A definição de rota utiliza as seguintes estruturas:
 
@@ -68,10 +74,10 @@ app.Method(func(*fiber.Ctx))
 app.Method(path string, func(*fiber.Ctx))
 ```
 
-- `app` é uma instância do **Fiber** .
-- `Method` é um [método de solicitação HTTP](https://fiber.wiki/application#methods) , em maiúsculas: `Get` , `Put` , `Post` , etc.
-- `path` é um caminho no servidor.
-- `func(*fiber.Ctx)` é uma função de retorno de chamada que contém o [contexto](https://fiber.wiki/context) executado quando a rota é correspondida.
+* `app` é uma instância do **Fiber** .
+* `Method` é um [método de solicitação HTTP](https://fiber.wiki/application#methods) , em maiúsculas: `Get` , `Put` , `Post` , etc.
+* `path` é um caminho no servidor.
+* `func(*fiber.Ctx)` é uma função de retorno de chamada que contém o [contexto](https://fiber.wiki/context) executado quando a rota é correspondida.
 
 ### Rota simples
 
@@ -104,7 +110,7 @@ app.Get("/:value?", func(c *fiber.Ctx) {
     // => Get request with value: hello world
     return
   }
-  
+
   c.Send("Get request without value")
 })
 ```
@@ -148,3 +154,4 @@ http://localhost:8080/hello.html
 http://localhost:8080/js/jquery.js
 http://localhost:8080/css/style.css
 ```
+

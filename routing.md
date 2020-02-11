@@ -1,5 +1,7 @@
 ---
-description: Roteamento refere-se a como os pontos de extremidade (URIs) de um aplicativo respondem às solicitações do cliente.
+description: >-
+  Roteamento refere-se a como os pontos de extremidade (URIs) de um aplicativo
+  respondem às solicitações do cliente.
 ---
 
 # 🔌 Roteamento
@@ -10,8 +12,8 @@ Os caminhos de rota, em combinação com um método de solicitação, definem os
 
 **Caracteres especiais**
 
-- Os personagens `?` , `+` , `&` e `()` são subconjuntos de seus equivalentes de **expressão regular** .
-- O hífen ( `-` ) e o ponto ( `.` ) São interpretados literalmente por caminhos **baseados** em **string** .
+* Os personagens `?` , `+` , `&` e `()` são subconjuntos de seus equivalentes de **expressão regular** .
+* O hífen \( `-` \) e o ponto \( `.` \) São interpretados literalmente por caminhos **baseados** em **string** .
 
 **Exemplos de caminhos de rota baseados em strings**
 
@@ -64,10 +66,13 @@ app.Get("/ab(cd)?e", func(c *fiber.Ctx) {
 
 Os parâmetros de rota são **denominados segmentos de URL** que são usados para capturar os valores especificados em sua posição no URL. Os valores capturados podem ser recuperados usando a função [Params](https://fiber.wiki/context#params) , com o nome do parâmetro de rota especificado no caminho como suas respectivas chaves.
 
-{% hint style = "info"%} O nome do parâmetro da rota deve ser composto de **caracteres** da **palavra** ( `[A-Za-z0-9_]` ). {% endhint%}
+{% hint style="info" %}
+O nome do parâmetro da rota deve ser composto de **caracteres** da **palavra** \( `[A-Za-z0-9_]` \).
+{% endhint %}
 
-{% hint style = "danger"%} O hífen ( `-` ) e o ponto ( `.` ) ainda **não foram** interpretados literalmente.
- Planejado para o **Fiber** v2. {% endhint%}
+{% hint style="danger" %}
+O hífen \( `-` \) e o ponto \( `.` \) ainda **não foram** interpretados literalmente. Planejado para o **Fiber** v2.
+{% endhint %}
 
 **Exemplo de definição de rotas com parâmetros de rota**
 
@@ -113,4 +118,7 @@ app.Get("/", func(c *fiber.Ctx) {
 
 `Use` method path é um caminho de **montagem** ou **prefixo** e limita o middleware a aplicar-se apenas a todos os caminhos solicitados que começam com ele. Isso significa que você não pode usar `:params` no método `Use` .
 
-{% hint style = "info"%} Se você **não tiver certeza de** quando usar **Tudo** ou **Usar** : leia aqui sobre a [API de métodos](https://fiber.wiki/application#methods) . {% endhint%}
+{% hint style="info" %}
+Se você **não tiver certeza de** quando usar **Tudo** ou **Usar** : leia aqui sobre a [API de métodos](https://fiber.wiki/application#methods) .
+{% endhint %}
+
