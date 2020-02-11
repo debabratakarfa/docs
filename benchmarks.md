@@ -13,7 +13,7 @@ description: >-
 * **CPU** Intel Xeon Gold 5120
 * **МЕМ** 32GB
 * **GO** go1.13.6 linux/amd64
-* **ОС** Linux
+* **OS** Linux
 * **NET** Dedicated Cisco 10-gigabit Ethernet switch
 
 Чтобы просмотреть результаты для всех фреймворков, посетите страницу «[Plaintext All Results](https://www.techempower.com/benchmarks/#section=test&runid=350f0783-cc9b-4259-9831-28987799782a&hw=ph&test=plaintext)». Чтобы просмотреть результаты только фрейворков на Go, посетите «[Plaintext Go Results](https://www.techempower.com/benchmarks/#section=test&runid=350f0783-cc9b-4259-9831-28987799782a&hw=ph&test=plaintext&l=zijocf-1r)».
@@ -49,7 +49,7 @@ description: >-
 * **CPU** Intel\(R\) Xeon\(R\) Gold 6140 CPU @ 2.30GHz
 * **МЕМ** 4GB
 * **GO** go1.13.6 linux/amd64
-* **ОС** Linux
+* **OS** Linux
 
 Первый тест — это имитация времени обработки в _handlers_ **0 мс**, **10 мс**, **100 мс** и **500 мс**.
 
