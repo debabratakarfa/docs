@@ -1,35 +1,33 @@
 ---
-description: The app instance conventionally denotes the Fiber application.
+description: La instancia de la aplicación denota convencionalmente la aplicación Fiber.
 ---
 
-# 🚀  Application
+# 🚀 Aplicación
 
-## New
+## Nuevo
 
-Method creates a new **Fiber** named instance.
+El método crea una nueva instancia con nombre de **Fiber** .
 
 ```go
 app := fiber.New()
 ```
 
-## Static
+## Estático
 
-Serve static files such as **images**, **CSS** and **JavaScript** files, you can use the **Static** method.
+Sirva archivos estáticos como **imágenes** , archivos **CSS** y **JavaScript** , puede usar el método **estático** .
 
-{% hint style="info" %}
-By default, this method will send `index.html` files in response to a request on a directory.
-{% endhint %}
+{% hint style = "info"%} De manera predeterminada, este método enviará archivos `index.html` en respuesta a una solicitud en un directorio. {% endhint%}
 
-#### Signature
+#### Firma
 
 ```go
 app.Static(root string)         // => without prefix
 app.Static(prefix, root string) // => with prefix
 ```
 
-#### Examples
+#### Ejemplos
 
-Use the following code to serve files in a directory named `./public`
+Use el siguiente código para servir archivos en un directorio llamado `./public`
 
 ```go
 app.Static("./public")
@@ -39,21 +37,19 @@ app.Static("./public")
 // => http://localhost:3000/css/style.css
 ```
 
-To serve from multiple directories, you can use **Static** multiple times.
+Para servir desde múltiples directorios, puede usar **Static** varias veces.
 
 ```go
 // Serve files from "./public" directory:
-app.Static("./public") 
+app.Static("./public")
 
 // Serve files from "./files" directory:
 app.Static("./files")
 ```
 
-{% hint style="info" %}
-Use a reverse proxy cache like [NGINX](https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/) to improve performance of serving static assets.
-{% endhint %}
+{% hint style = "info"%} Use una memoria caché de proxy inverso como [NGINX](https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/) para mejorar el rendimiento del servicio de activos estáticos. {% endhint%}
 
-To create a virtual path prefix \(_where the path does not actually exist in the file system_\) for files that are served by the **Static** method, specify a prefix path for the static directory, as shown below:
+Para crear un prefijo de ruta virtual ( *donde la ruta no existe realmente en el sistema* de archivos) para los archivos que se sirven mediante el método **estático** , especifique una ruta de prefijo para el directorio estático, como se muestra a continuación:
 
 ```go
 app.Static("/static", "./public")
@@ -63,18 +59,18 @@ app.Static("/static", "./public")
 // => http://localhost:3000/static/css/style.css
 ```
 
-## Methods
+## Métodos
 
-Routes an HTTP request, where **METHOD** is the [HTTP method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) of the request.
+Enruta una solicitud HTTP, donde **METHOD** es el [método HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) de la solicitud.
 
-#### Signature
+#### Firma
 
 ```go
 app.METHOD(handler func(*Ctx))              // match any path
 app.METHOD(path string, handler func(*Ctx)) // match specific path
 ```
 
-#### Example
+#### Ejemplo
 
 ```go
 // Single method
@@ -95,17 +91,17 @@ app.All(...)
 app.Use(...)
 ```
 
-## Listen
+## Escucha
 
-Binds and listens for connections on the specified address. This can be a `int` for port or `string` for address.
+Vincula y escucha las conexiones en la dirección especificada. Esto puede ser un `int` para el puerto o una `string` para la dirección.
 
-#### Signature
+#### Firma
 
 ```go
 app.Listen(address interface{}, tls ...string)
 ```
 
-#### Example
+#### Ejemplo
 
 ```go
 app.Listen(8080)
@@ -114,21 +110,19 @@ app.Listen(":8080")
 app.Listen("127.0.0.1:8080")
 ```
 
-To enable **TLS/HTTPS** you can append your **cert** and **key** path.
+Para habilitar **TLS / HTTPS** , puede agregar su **certificado** y ruta de **clave** .
 
 ```go
 app.Listen(443, "server.crt", "server.key")
 ```
 
-## Settings
+## Configuraciones
 
-### Engine
+### Motor
 
-You can change the default **Fasthttp** [server settings](https://github.com/valyala/fasthttp/blob/master/server.go#L150) via the **Fiber** instance. These settings need to be set **before** [Listen](application.md#listen) method.
+Puede cambiar la configuración predeterminada del [servidor](https://github.com/valyala/fasthttp/blob/master/server.go#L150) **Fasthttp a** través de la instancia de **Fiber** . Estas configuraciones deben establecerse **antes del** método [Listen](application.md#listen) .
 
-{% hint style="danger" %}
-Only change these settings, if you know **what** your are doing.
-{% endhint %}
+{% hint style = "danger"%} Solo cambia esta configuración, si sabes **lo que** estás haciendo. {% endhint%}
 
 ```go
 app.Engine.Concurrency = 256 * 1024
@@ -153,21 +147,21 @@ app.Engine.KeepHijackedConns = false
 
 ### Prefork
 
-The Prefork option enables use of the [**SO\_REUSEPORT**](https://lwn.net/Articles/542629/) socket option, which is available in newer versions of many operating systems, including **DragonFly BSD** and **Linux** \(kernel version **3.9** and later\). This will spawn multiple Go processes listening on the same port.
+La opción Prefork permite el uso de la [**opción de**](https://lwn.net/Articles/542629/) socket [**SO_REUSEPORT**](https://lwn.net/Articles/542629/) , que está disponible en las versiones más recientes de muchos sistemas operativos, incluidos **DragonFly BSD** y **Linux** (versión de kernel **3.9** y posterior). Esto generará múltiples procesos Go escuchando en el mismo puerto.
 
-**NGINX** has a great article about [Socket Sharding](https://www.nginx.com/blog/socket-sharding-nginx-release-1-9-1/), these pictures are taken from the same article.
+**NGINX** tiene un gran artículo sobre [Socket Sharding](https://www.nginx.com/blog/socket-sharding-nginx-release-1-9-1/) , estas imágenes están tomadas del mismo artículo.
 
-![Schema, when Prefork disabled \(by default\)](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-1-e1432652484191.png)
+![Schema, when Prefork disabled (by default)](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-1-e1432652484191.png)
 
 ![Schema, when Prefork enabled](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-e1432652376641.png)
 
-You can enable the Prefork feature by adding the `-prefork` flag:
+Puede habilitar la función Prefork agregando el indicador `-prefork` :
 
 ```bash
 ./server -prefork
 ```
 
-Or set the `Prefork` option to `true`:
+O establezca la opción `Prefork` en `true` :
 
 ```go
 app.Prefork = true // Prefork enabled
@@ -181,41 +175,39 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-### Server
+### Servidor
 
-Fiber by default does not send a [Server header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server), but you can enable this by changing the server value.
+La fibra por defecto no envía un [encabezado de servidor](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server) , pero puede habilitarlo cambiando el valor del servidor.
 
 ```go
 app.Server = "Windows 95" // => Server: Windows 95
 ```
 
-### Banner
+### Bandera
 
-When you launch your Fiber application, console will print a banner containing package version and listening port. _This is enabled by default._
+Cuando inicie su aplicación Fiber, la consola imprimirá un banner que contiene la versión del paquete y el puerto de escucha. *Esto está habilitado por defecto.*
 
-![](.gitbook/assets/screenshot-2020-02-08-at-13.18.27.png)
+![](../../.gitbook/assets/screenshot-2020-02-08-at-13.18.27.png)
 
-To disable it, set `Banner` to `false`:
+Para deshabilitarlo, configure `Banner` en `false` :
 
 ```go
 app.Banner = false // Hide banner
 ```
 
-## Test
+## Prueba
 
-Testing your application is done with the **Test** method.
+La prueba de su aplicación se realiza con el método de **prueba** .
 
-{% hint style="info" %}
-Method is mostly used for `_test.go` files and application debugging.
-{% endhint %}
+El método {% hint style = "info"%} se utiliza principalmente para la depuración de aplicaciones y archivos `_test.go` . {% endhint%}
 
-#### Signature
+#### Firma
 
 ```go
 app.Test(req *http.Request) (*http.Response, error)
 ```
 
-#### Example
+#### Ejemplo
 
 ```go
 // Create route with GET method for test:
@@ -239,4 +231,3 @@ if resp.StatusCode == 200 {
   fmt.Println(string(body)) // => Hello, World!
 }
 ```
-

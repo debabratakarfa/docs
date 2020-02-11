@@ -1,27 +1,22 @@
 ---
-description: >-
-  The Ctx struct represents the Context which hold the HTTP request and
-  response. It has methods for the request query string, parameters, body, HTTP
-  headers and so on.
+description: La estructura Ctx representa el contexto que contiene la solicitud y respuesta HTTP. Tiene métodos para la cadena de consulta de solicitud, parámetros, cuerpo, encabezados HTTP, etc.
 ---
 
-# 🧠  Context
+# 🧠 Contexto
 
-## Accepts
+## Acepta
 
-Checks, if the specified **extensions** or **content** **types** are acceptable.
+Comprueba si las **extensiones** o los **tipos de** **contenido** especificados son aceptables.
 
-{% hint style="info" %}
-Based on the request’s [Accept](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) HTTP header.
-{% endhint %}
+{% hint style = "info"%} Basado en el encabezado HTTP [Accept de](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) la solicitud. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Accepts(types ...string) string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // Accept: text/*, application/json
@@ -36,21 +31,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## AcceptsCharsets
+## Acepta Charsets
 
-Checks, if the specified **charset** is acceptable.
+Verifica si el **juego de caracteres** especificado es aceptable.
 
-{% hint style="info" %}
-Based on the request’s [Accept-Charset](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset) HTTP header.
-{% endhint %}
+{% hint style = "info"%} Basado en el encabezado HTTP [Accept-Charset de](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset) la solicitud. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.AcceptsCharsets(charsets ...string) string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // Accept-Charset: utf-8, iso-8859-1;q=0.2, utf-7;q=0.5
@@ -62,21 +55,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## AcceptsEncodings
+## Acepta Codificaciones
 
-Checks, if the specified **encoding** is acceptable.
+Comprueba si la **codificación** especificada es aceptable.
 
-{% hint style="info" %}
-Based on the request’s [Accept-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding) HTTP header.
-{% endhint %}
+{% hint style = "info"%} Basado en el encabezado HTTP [Accept-Encoding de](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding) la solicitud. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.AcceptsEncodings(encodings ...string) string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // Accept-Encoding: gzip, compress;q=0.2
@@ -88,21 +79,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## AcceptsLanguages
+## Acepta idiomas
 
-Checks if the specified **language** is acceptable.
+Comprueba si el **idioma** especificado es aceptable.
 
-{% hint style="info" %}
-Based on the request’s [Accept-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language) HTTP header.
-{% endhint %}
+{% hint style = "info"%} Basado en el encabezado HTTP [Accept-Language de](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language) la solicitud. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.AcceptsLanguages(languages ...string) string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // Accept-Language: en;q=0.8, nl, ru
@@ -114,21 +103,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Append
+## Adjuntar
 
-Appends the specified **value** to the HTTP response header field.
+Agrega el **valor** especificado al campo de encabezado de respuesta HTTP.
 
-{% hint style="warning" %}
-If the header is **not** already set, it creates the header with the specified value.
-{% endhint %}
+{% hint style = "warning"%} Si el encabezado aún **no** está configurado, crea el encabezado con el valor especificado. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Append(field, values ...string)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -140,21 +127,21 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Attachment
+## Adjunto archivo
 
-Sets the HTTP response [Content-Disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition) header field to `attachment`.
+Establece el campo de encabezado [Content-Disposition de](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition) respuesta HTTP en `attachment` .
 
-**Signature**
+**Firma**
 
 ```go
 c.Attachment(file ...string)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
-  c.Attachment() 
+  c.Attachment()
   // => Content-Disposition: attachment
 
   c.Attachment("./upload/images/logo.png")
@@ -165,15 +152,15 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## BaseURL
 
-Returns base URL \(**protocol** + **host**\) as a `string`.
+Devuelve la URL base ( **protocolo** + **host** ) como una `string` .
 
-**Signature**
+**Firma**
 
 ```go
 c.BaseURL() string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // GET https://example.com/page#chapter-1
@@ -185,15 +172,15 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## BasicAuth
 
-Returns **username** and **password** provided in [Authorization](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization) header of request, if request uses [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication).
+Devuelve el **nombre de usuario** y la **contraseña** proporcionados en el encabezado de [autorización](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization) de la solicitud, si la solicitud utiliza [la autenticación básica HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) .
 
-**Signature**
+**Firma**
 
 ```go
 c.BasicAuth() (user, pass string, ok bool)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // curl --user john:doe http://localhost:8080/auth
@@ -210,11 +197,11 @@ app.Get("/auth", func(c *fiber.Ctx) {
 })
 ```
 
-## Body
+## Cuerpo
 
-Contains the **raw body** submitted in a **POST** request.
+Contiene el **cuerpo sin procesar** enviado en una solicitud **POST** .
 
-**Signature**
+**Firma**
 
 ```go
 c.Body() string
@@ -223,23 +210,23 @@ c.Body(key []byte) string
 c.Body(func(key, value string)) func(string, string)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // curl -X POST http://localhost:8080 -d user=john
 
 app.Post("/", func(c *fiber.Ctx) {
   // Get raw body from POST request:
-  c.Body() 
+  c.Body()
   // => user=john
 
   // Get body value by specific key:
-  c.Body("user") 
+  c.Body("user")
   // => "john"
 
   // Loop trough all body params:
   c.Body(func(key string, val string) {
-    fmt.Printl(key, val) 
+    fmt.Printl(key, val)
     // => "user" "john"
   })
 })
@@ -247,16 +234,16 @@ app.Post("/", func(c *fiber.Ctx) {
 
 ## ClearCookie
 
-Clears **all** client cookies or a specific cookie by **name** \(_by setting expire date in the past_\).
+Borra **todas** las cookies del cliente o una cookie específica por **nombre** ( *al configurar la fecha de caducidad en el pasado* ).
 
-**Signature**
+**Firma**
 
 ```go
 c.ClearCookie()
 c.ClearCookie(key string)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -271,22 +258,20 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Cookie
+## Galleta
 
-Sets cookie with **name** and **value**.
+Establece cookies con **nombre** y **valor** .
 
-**Signature**
+**Firma**
 
 ```go
 c.Cookie(name, value string)
 c.Cookie(name, value string, options *Cookie{})
 ```
 
-**Cookie struct**
+**Estructura de cookies**
 
-{% hint style="warning" %}
-**Expire** option will **not** be used, if **MaxAge** is set.
-{% endhint %}
+**No** se utilizarán {estilo indicio% =% de "alerta"} opción de **expirar,** si se ha establecido **MaxAge.** {% endhint%}
 
 ```go
 &fiber.Cookie{
@@ -300,11 +285,11 @@ c.Cookie(name, value string, options *Cookie{})
 }
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
-  c.Cookie("name", "john") 
+  c.Cookie("name", "john")
   // => Cookie: name=john;
 
   c.Cookie("name", "john", &fiber.Cookie{
@@ -315,17 +300,17 @@ app.Get("/", func(c *fiber.Ctx) {
     Secure:   true,
     SameSite: "lax",
   })
-  // => name=john; max-age=60; domain=example.com; path=/; 
+  // => name=john; max-age=60; domain=example.com; path=/;
   //    HttpOnly; secure; SameSite=Lax
 
 })
 ```
 
-## Cookies
+## Galletas
 
-Gets cookies.
+Obtiene cookies.
 
-**Signature**s
+**Firma**
 
 ```go
 c.Cookies() string
@@ -334,7 +319,7 @@ c.Cookies(key []byte) string
 c.Cookies(func(key, value string)) string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -355,21 +340,21 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Download
+## Descargar
 
-Transfers the file from path as an `attachment`.
+Transfiere el archivo desde la ruta como un `attachment` .
 
-Typically, browsers will prompt the user for download. By default, the [Content-Disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition) header `filename=` parameter is path \(_this typically appears in the browser dialog_\).
+Por lo general, los navegadores solicitarán al usuario la descarga. Por defecto, el encabezado [Content-Disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition) `filename=` parámetro es la ruta ( *esto generalmente aparece en el diálogo del navegador* ).
 
-Override this default with the **filename** parameter.
+Anule este valor predeterminado con el parámetro de **nombre de archivo** .
 
-**Signature**
+**Firma**
 
 ```go
 c.Download(path, filename ...string)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -381,23 +366,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## End
+## Final
 
-{% hint style="danger" %}
-Planned for **Fiber** v2.
-{% endhint %}
+{% hint style = "danger"%} Planificado para **Fiber** v2. {% endhint%}
 
 ## Fasthttp
 
-You can still **access** and use all **Fasthttp** methods and properties.
+Aún puede **acceder** y utilizar todos los métodos y propiedades de **Fasthttp** .
 
-**Signature**
+**Firma**
 
-{% hint style="info" %}
-Please read the [Fasthttp Documentation](https://pkg.go.dev/github.com/valyala/fasthttp?tab=doc) for more information.
-{% endhint %}
+{% hint style = "info"%} Lea la [documentación de Fasthttp](https://pkg.go.dev/github.com/valyala/fasthttp?tab=doc) para obtener más información. {% endhint%}
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -409,21 +390,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Format
+## Formato
 
-Performs content-negotiation on the [Accept](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) HTTP header. It uses [Accepts](context.md#accepts) to select a proper format.
+Realiza la negociación de contenido en el encabezado [Aceptar](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept) HTTP. Utiliza [Acepta](context.md#accepts) para seleccionar un formato adecuado.
 
-{% hint style="info" %}
-If the header is **not** specified or there is **no** proper format, **text/plain** is used.
-{% endhint %}
+{% hint style = "info"%} Si el encabezado **no** está especificado o no **hay** un formato adecuado, se usa **text / plain** . {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Format(body interface{})
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -443,15 +422,15 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## FormFile
 
-MultipartForm files can be retrieved by name, the **first** file from the given key is returned.
+Los archivos MultipartForm se pueden recuperar por nombre, se devuelve el **primer** archivo de la clave dada.
 
-**Signature**
+**Firma**
 
 ```go
 c.FormFile(name string) (*multipart.FileHeader, error)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Post("/", func(c *fiber.Ctx) {
@@ -468,15 +447,15 @@ app.Post("/", func(c *fiber.Ctx) {
 
 ## FormValue
 
-MultipartForm values can be retrieved by name, the **first** value from the given key is returned.
+Los valores de MultipartForm se pueden recuperar por nombre, se devuelve el **primer** valor de la clave dada.
 
-**Signature**
+**Firma**
 
 ```go
 c.FormValue(name string) string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Post("/", func(c *fiber.Ctx) {
@@ -486,23 +465,21 @@ app.Post("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Fresh
+## Fresco
 
-{% hint style="danger" %}
-Planned for **Fiber** v2.
-{% endhint %}
+{% hint style = "danger"%} Planificado para **Fiber** v2. {% endhint%}
 
-## Get
+## Obtener
 
-Returns the HTTP request header specified by field. The match is case-insensitive.
+Devuelve el encabezado de solicitud HTTP especificado por campo. El partido no distingue entre mayúsculas y minúsculas.
 
-**Signature**
+**Firma**
 
 ```go
 c.Get(field string) string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -512,23 +489,21 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## HeadersSent
+## Encabezados
 
-{% hint style="danger" %}
-Planned for **Fiber** v2.
-{% endhint %}
+{% hint style = "danger"%} Planificado para **Fiber** v2. {% endhint%}
 
-## Hostname
+## Nombre de host
 
-Contains the hostname derived from the [Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host) HTTP header.
+Contiene el nombre de host derivado del encabezado HTTP del [host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Host) .
 
-**Signature**
+**Firma**
 
 ```go
 c.Hostname() string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // GET http://google.com/search
@@ -540,15 +515,15 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## IP
 
-Returns the remote IP address of the request.
+Devuelve la dirección IP remota de la solicitud.
 
-**Signature**
+**Firma**
 
 ```go
 c.IP() string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -558,15 +533,15 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## IPs
 
-Returns an array of IP addresses specified in the [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For) request header.
+Devuelve una matriz de direcciones IP especificadas en el encabezado de solicitud [X-Fordered-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For) .
 
-**Signature**
+**Firma**
 
 ```go
 c.IPs() []string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // X-Forwarded-For: proxy1, 127.0.0.1", proxy3
@@ -576,21 +551,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Is
+## Es
 
-Returns the matching **content type**, if the incoming request’s [Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) HTTP header field matches the [MIME type](https://developer.mozilla.org/ru/docs/Web/HTTP/Basics_of_HTTP/MIME_types) specified by the type parameter.
+Devuelve el **tipo de contenido** coincidente, si el campo de encabezado HTTP [Content-Type de](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) la solicitud entrante coincide con el [tipo MIME](https://developer.mozilla.org/ru/docs/Web/HTTP/Basics_of_HTTP/MIME_types) especificado por el parámetro type.
 
-{% hint style="info" %}
-If the request has **no** body, it returns **false**.
-{% endhint %}
+{% hint style = "info"%} Si la solicitud **no** tiene cuerpo, devuelve **false** . {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Is(t string) bool
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // Content-Type: text/html; charset=utf-8
@@ -604,19 +577,17 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## JSON
 
-Converts any **interface** or **string** to JSON using [Jsoniter](https://github.com/json-iterator/go).
+Convierte cualquier **interfaz** o **cadena** a JSON usando [Jsoniter](https://github.com/json-iterator/go) .
 
-{% hint style="info" %}
-Method also sets the content header to **application/json**.
-{% endhint %}
+El método {% hint style = "info"%} también establece el encabezado de contenido en **application / json** . {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.JSON(v interface{}) error
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 type SomeStruct struct {
@@ -641,19 +612,17 @@ app.Get("/json", func(c *fiber.Ctx) {
 
 ## JSONBytes
 
-Raw JSON method.
+Método JSON sin procesar.
 
-{% hint style="success" %}
-Use this, if you **don't need** JSON serialization, recommended when working with **raw** inputs.
-{% endhint %}
+{% hint style = "success"%} Use esto, si **no necesita la** serialización JSON, recomendado cuando trabaje con entradas **sin** formato. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.JSONBytes(b []byte) error
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/json", func(c *fiber.Ctx) {
@@ -664,19 +633,17 @@ app.Get("/json", func(c *fiber.Ctx) {
 
 ## JSONString
 
-Raw JSON method.
+Método JSON sin procesar.
 
-{% hint style="success" %}
-Use this, if you **don't need** JSON serialization, recommended when working with **raw** inputs.
-{% endhint %}
+{% hint style = "success"%} Use esto, si **no necesita la** serialización JSON, recomendado cuando trabaje con entradas **sin** formato. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.JSONString(s string) error
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/json", func(c *fiber.Ctx) {
@@ -687,17 +654,17 @@ app.Get("/json", func(c *fiber.Ctx) {
 
 ## JSONP
 
-Sends a JSON response with JSONP support. This method is identical to [JSON](context.md#json), except that it opts-in to JSONP callback support. By default, the JSONP callback name is simply callback.
+Envía una respuesta JSON con soporte JSONP. Este método es idéntico a [JSON](context.md#json) , excepto que opta por el soporte de devolución de llamada JSONP. Por defecto, el nombre de devolución de llamada JSONP es simplemente devolución de llamada.
 
-Override this by passing a **named string** in the method.
+Anule esto pasando una **cadena con nombre** en el método.
 
-**Signature**
+**Firma**
 
 ```go
 c.JSONP(v interface{}, callback ...string) error
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 type SomeStruct struct {
@@ -720,17 +687,17 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Links
+## Enlaces
 
-Joins the links followed by the property to populate the response’s [Link](https://developer.mozilla.org/ru/docs/Web/HTTP/Headers/Link) HTTP header field.
+Une los enlaces seguidos por la propiedad para completar el campo de encabezado HTTP de [enlace de](https://developer.mozilla.org/ru/docs/Web/HTTP/Headers/Link) la respuesta.
 
-**Signature**
+**Firma**
 
 ```go
 c.Links(link ...string)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -743,21 +710,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Locals
+## Locales
 
-Method that stores string variables scoped to the request and therefore available only to the routes that match the request.
+Método que almacena las variables de cadena dentro del alcance de la solicitud y, por lo tanto, solo está disponible para las rutas que coinciden con la solicitud.
 
-{% hint style="success" %}
-This is useful, if you want to pass some **specific values** to the next middleware.
-{% endhint %}
+{% hint style = "success"%} Esto es útil si desea pasar algunos **valores específicos** al siguiente middleware. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Locals(key string, value ...interface{}) interface{}
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -775,9 +740,7 @@ app.Get("/admin", func(c *fiber.Ctx) {
 })
 ```
 
-{% hint style="info" %}
-You can put any type inside the **Locals**, but don't forget to convert it back, when you are using the variable.
-{% endhint %}
+{% hint style = "info"%} Puedes poner cualquier tipo dentro de los **locales** , pero no olvides volver a convertirlo cuando estés usando la variable. {% endhint%}
 
 ```go
 type SomeStruct struct {
@@ -799,17 +762,17 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Location
+## Ubicación
 
-Sets the response [Location](https://developer.mozilla.org/ru/docs/Web/HTTP/Headers/Location) HTTP header to the specified path parameter.
+Establece el encabezado HTTP de [ubicación de](https://developer.mozilla.org/ru/docs/Web/HTTP/Headers/Location) respuesta al parámetro de ruta especificado.
 
-**Signature**
+**Firma**
 
 ```go
 c.Location(path string)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Post("/", func(c *fiber.Ctx) {
@@ -818,17 +781,17 @@ app.Post("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Method
+## Método
 
-Contains a string corresponding to the HTTP method of the request: GET, POST, PUT and so on.
+Contiene una cadena correspondiente al método HTTP de la solicitud: GET, POST, PUT, etc.
 
-**Signature**
+**Firma**
 
 ```go
 c.Method() string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Post("/", func(c *fiber.Ctx) {
@@ -838,15 +801,15 @@ app.Post("/", func(c *fiber.Ctx) {
 
 ## MultipartForm
 
-To access multipart form entries, you can parse the binary with `MultipartForm()`. This returns a `map[string][]string`, so given a key the value will be a string slice.
+Para acceder a las entradas de formulario multiparte, puede analizar el binario con `MultipartForm()` . Esto devuelve una `map[string][]string` , por lo que, dada una clave, el valor será un segmento de cadena.
 
-**Signature**
+**Firma**
 
 ```go
 c.MultipartForm() (*multipart.Form, error)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Post("/", func(c *fiber.Ctx) {
@@ -875,17 +838,17 @@ app.Post("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Next
+## próximo
 
-When **Next** is called, it executes the next method in the stack that matches the current route.
+Cuando se llama a **Next** , ejecuta el siguiente método en la pila que coincide con la ruta actual.
 
-**Signature**
+**Firma**
 
 ```go
 c.Next()
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -906,15 +869,15 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## OriginalURL
 
-Contains the original request URL.
+Contiene la URL de solicitud original.
 
-**Signature**
+**Firma**
 
 ```go
 c.OriginalURL() string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // GET http://example.com/search?q=something
@@ -926,19 +889,17 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## Params
 
-Method can be used to get the route parameters.
+El método se puede usar para obtener los parámetros de ruta.
 
-{% hint style="info" %}
-Defaults to empty string \(`""`\), if the param **doesn't** exist.
-{% endhint %}
+{% hint style = "info"%} El valor predeterminado es cadena vacía ( `""` ), si el parámetro **no** existe. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Params(param string) string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // GET http://example.com/user/tj
@@ -948,17 +909,17 @@ app.Get("/user/:name", func(c *fiber.Ctx) {
 })
 ```
 
-## Path
+## Camino
 
-Contains the path part of the request URL.
+Contiene la parte de la ruta de la URL de solicitud.
 
-**Signature**
+**Firma**
 
 ```go
 c.Path() string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // GET http://example.com/users?sort=desc
@@ -968,17 +929,17 @@ app.Get("/users", func(c *fiber.Ctx) {
 })
 ```
 
-## Protocol
+## Protocolo
 
-Contains the request protocol string: `http` or `https` for **TLS** requests.
+Contiene la cadena de protocolo de solicitud: `http` o `https` para solicitudes **TLS** .
 
-**Signature**
+**Firma**
 
 ```go
 c.Protocol() string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // GET http://example.com
@@ -988,21 +949,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Query
+## Consulta
 
-This property is an object containing a property for each query string parameter in the route.
+Esta propiedad es un objeto que contiene una propiedad para cada parámetro de cadena de consulta en la ruta.
 
-{% hint style="info" %}
-If there is **no** query string, it returns an **empty string**.
-{% endhint %}
+{% hint style = "info"%} Si no hay **una** cadena de consulta, devuelve una **cadena vacía** . {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Query(parameter string) string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // GET http://example.com/shoes?order=desc&brand=nike
@@ -1013,27 +972,23 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Range
+## Rango
 
-{% hint style="danger" %}
-Planned for **Fiber** v2.
-{% endhint %}
+{% hint style = "danger"%} Planificado para **Fiber** v2. {% endhint%}
 
-## Redirect
+## Redirigir
 
-Redirects to the URL derived from the specified path, with specified status, a positive integer that corresponds to an HTTP status code.
+Redirige a la URL derivada de la ruta especificada, con el estado especificado, un entero positivo que corresponde a un código de estado HTTP.
 
-{% hint style="info" %}
-If **not** specified, status defaults to **302 Found**.
-{% endhint %}
+{% hint style = "info"%} Si **no se** especifica, el estado predeterminado es **302 Encontrado** . {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Redirect(path string, status ...int)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -1044,27 +999,23 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Render
+## Hacer
 
-{% hint style="danger" %}
-Planned for **Fiber** v2.
-{% endhint %}
+{% hint style = "danger"%} Planificado para **Fiber** v2. {% endhint%}
 
-## Route
+## Ruta
 
-Contains the currently-matched [Route](https://pkg.go.dev/github.com/gofiber/fiber?tab=doc#Route) struct.
+Contiene la estructura de [ruta](https://pkg.go.dev/github.com/gofiber/fiber?tab=doc#Route) actualmente coincidente.
 
-{% hint style="warning" %}
-Use this method **only** for debugging.
-{% endhint %}
+{% hint style = "warning"%} Use este método **solo** para la depuración. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Route() *Route
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // http://localhost:8080/hello
@@ -1080,54 +1031,50 @@ app.Post("/:api?", func(c *fiber.Ctx) {
 })
 ```
 
-## SaveFile
+## Guardar el archivo
 
-Method is used to save **any** multipart file to disk.
+El método se usa para guardar **cualquier** archivo multiparte en el disco.
 
-**Signature**
+**Firma**
 
 ```go
 c.SaveFile(fh *multipart.FileHeader, path string)
 ```
 
-**Example**
+**Ejemplo**
 
-{% hint style="success" %}
-You can see a working example at [MultipartForm](https://fiber.wiki/context#multipartform) method.
-{% endhint %}
+{% hint style = "success"%} Puede ver un ejemplo de trabajo en el método [MultipartForm](https://fiber.wiki/context#multipartform) . {% endhint%}
 
-## Secure
+## Seguro
 
-A boolean property, that is `true` , if a **TLS** connection is established.
+Una propiedad booleana, eso es `true` , si se establece una conexión **TLS** .
 
-**Signature**
+**Firma**
 
 ```go
 c.Secure() bool
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // Secure() method is equivalent to:
 c.Protocol() == "https"
 ```
 
-## Send
+## Enviar
 
-Sends the HTTP response. The **Send** body can be of any type.
+Envía la respuesta HTTP. El cuerpo de **envío** puede ser de cualquier tipo.
 
-{% hint style="warning" %}
-Method **doesn't** append like [Write](https://fiber.wiki/context#write) method.
-{% endhint %}
+{% hint style = "warning"%} El método **no se** agrega como el método [Write](https://fiber.wiki/context#write) . {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Send(body ...interface{})
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -1139,19 +1086,17 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## SendBytes
 
-Raw method.
+Método crudo
 
-{% hint style="success" %}
-Use this, if you **don't need** type assertion, recommended for **faster** performance.
-{% endhint %}
+{% hint style = "success"%} Use esto, si **no necesita la** aserción de tipo, recomendado para **un** rendimiento **más rápido** . {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.SendBytes(b []byte)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -1162,19 +1107,17 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## SendString
 
-Raw method.
+Método crudo
 
-{% hint style="success" %}
-Use this, if you **don't need** type assertion, recommended for **faster** performance.
-{% endhint %}
+{% hint style = "success"%} Use esto, si **no necesita la** aserción de tipo, recomendado para **un** rendimiento **más rápido** . {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.SendString(s string)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -1183,21 +1126,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## SendFile
+## Enviar archivo
 
-Transfers the file from the given path. Sets the [Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) response HTTP header field based on the **filenames** extension.
+Transfiere el archivo desde la ruta dada. Establece el campo de encabezado HTTP de respuesta de [tipo de contenido](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) en función de la extensión de **nombres de archivo** .
 
-{% hint style="info" %}
-Method use **gzipping** by default, set it to **false** to disable.
-{% endhint %}
+{% hint style = "info"%} El método usa **gzipping** de forma predeterminada, **configúrelo** en **falso** para deshabilitarlo. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.SendFile(path string, gzip ...bool)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/not-found", func(c *fiber.Ctx) {
@@ -1210,19 +1151,17 @@ app.Get("/not-found", func(c *fiber.Ctx) {
 
 ## SendStatus
 
-Sets the status code and the correct status message in the body, if the response body is **empty**.
+Establece el código de estado y el mensaje de estado correcto en el cuerpo, si el cuerpo de la respuesta está **vacío** .
 
-{% hint style="success" %}
-You can find all used status codes and messages [here](https://github.com/gofiber/fiber/blob/dffab20bcdf4f3597d2c74633a7705a517d2c8c2/utils.go#L183-L244).
-{% endhint %}
+{% hint style = "success"%} Puede encontrar todos los códigos de estado y mensajes usados [aquí](https://github.com/gofiber/fiber/blob/dffab20bcdf4f3597d2c74633a7705a517d2c8c2/utils.go#L183-L244) . {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.SendStatus(status int)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/not-found", func(c *fiber.Ctx) {
@@ -1235,17 +1174,17 @@ app.Get("/not-found", func(c *fiber.Ctx) {
 })
 ```
 
-## Set
+## Conjunto
 
-Sets the response’s HTTP header field to `value`.
+Establece el campo del encabezado HTTP de la respuesta en `value` .
 
-**Signature**
+**Firma**
 
 ```go
 c.Set(field, value string)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -1254,33 +1193,27 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## SignedCookies
+## Cookies firmadas
 
-{% hint style="danger" %}
-Planned for **Fiber** v2.
-{% endhint %}
+{% hint style = "danger"%} Planificado para **Fiber** v2. {% endhint%}
 
-## Stale
+## Duro
 
-{% hint style="danger" %}
-Planned for **Fiber** v2.
-{% endhint %}
+{% hint style = "danger"%} Planificado para **Fiber** v2. {% endhint%}
 
-## Status
+## Estado
 
-Sets the HTTP status for the response.
+Establece el estado HTTP para la respuesta.
 
-{% hint style="info" %}
-Method is a **chain able**.
-{% endhint %}
+{% hint style = "info"%} El método es **capaz de encadenar** . {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Status(status int)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -1290,19 +1223,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Subdomains
+## Subdominios
 
-An array of subdomains in the domain name of the request.
+Una matriz de subdominios en el nombre de dominio de la solicitud.
 
-The application property subdomain offset, which defaults to `2`, is used for determining the beginning of the subdomain segments.
+El desplazamiento del subdominio de la propiedad de la aplicación, que por defecto es `2` , se usa para determinar el comienzo de los segmentos del subdominio.
 
-**Signature**
+**Firma**
 
 ```go
 c.Subdomains(offset ...int) []string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // Host: "tobi.ferrets.example.com"
@@ -1313,17 +1246,17 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Type
+## Tipo
 
-Sets the [Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) HTTP header to the MIME type listed [here](https://github.com/nginx/nginx/blob/master/conf/mime.types) specified by the file **extension**.
+Establece el encabezado HTTP [Content-Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) en el tipo MIME que se detalla [aquí](https://github.com/nginx/nginx/blob/master/conf/mime.types) especificado por la **extensión del** archivo.
 
-**Signature**
+**Firma**
 
 ```go
 c.Type(t string) string
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -1334,21 +1267,19 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Vary
+## Variar
 
-Adds the given header field to the [Vary](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Vary) response header. This will append the header, if not already listed, otherwise leaves it listed in the current location.
+Agrega el campo de encabezado dado al encabezado de respuesta [Vary](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Vary) . Esto agregará el encabezado, si aún no está en la lista, de lo contrario lo deja en la lista en la ubicación actual.
 
-{% hint style="info" %}
-Multiple fields are **allowed**.
-{% endhint %}
+{% hint style = "info"%} Se **permiten** varios campos. {% endhint%}
 
-**Signature**
+**Firma**
 
 ```go
 c.Vary(field ...string)
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -1364,17 +1295,17 @@ app.Get("/", func(c *fiber.Ctx) {
 })
 ```
 
-## Write
+## Escribir
 
-Appends **any** input to the HTTP body response.
+Agrega **cualquier** entrada a la respuesta del cuerpo HTTP.
 
-**Signature**
+**Firma**
 
 ```go
 c.Write(body ...interface{})
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 app.Get("/", func(c *fiber.Ctx) {
@@ -1386,15 +1317,15 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## XHR
 
-A Boolean property, that is `true`, if the request’s [X-Requested-With](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) header field is [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest), indicating that the request was issued by a client library \(such as [jQuery](https://api.jquery.com/jQuery.ajax/)\).
+Una propiedad booleana, es `true` , si el campo de encabezado [X-Requested-With de](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) la solicitud es [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) , lo que indica que la solicitud fue emitida por una biblioteca cliente (como [jQuery](https://api.jquery.com/jQuery.ajax/) ).
 
-**Signature**
+**Firma**
 
 ```go
 c.XHR() bool
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 // X-Requested-With: XMLHttpRequest
@@ -1406,15 +1337,15 @@ app.Get("/", func(c *fiber.Ctx) {
 
 ## XML
 
-XML sets the header to `application/xml` and unmarshals your interface to XML.
+XML establece el encabezado en `application/xml` y desarma su interfaz a XML.
 
-**Signature**
+**Firma**
 
 ```go
 c.XML(xml interface{}) error
 ```
 
-**Example**
+**Ejemplo**
 
 ```go
 type SomeStruct struct {
@@ -1425,7 +1356,7 @@ type SomeStruct struct {
 app.Get("/", func(c *fiber.Ctx) {
   // Create data struct:
   data := SomeStruct{
-    "John", 
+    "John",
     50,
   }
 
@@ -1434,4 +1365,3 @@ app.Get("/", func(c *fiber.Ctx) {
   // => <some-struct><name>John</name><stars>50</stars></some-struct>
 })
 ```
-
