@@ -2,7 +2,7 @@
 description: 该应用程序实例通常表示Fiber应用程序。
 ---
 
-# 🚀申请
+# 🚀 申请
 
 ## 新
 
@@ -49,7 +49,7 @@ app.Static("./files")
 
 {％hint style =“ info”％}使用[NGINX之](https://www.nginx.com/resources/wiki/start/topics/examples/reverseproxycachingexample/)类的反向代理缓存来提高提供静态资产的性能。 {％endhint％}
 
-要为由**Static**方法提供服务*的文件*创建虚拟路径前缀（ *该路径在文件系统中实际上不存在* ），请为静态目录指定前缀路径，如下所示：
+要为由**Static**方法提供服务_的文件_创建虚拟路径前缀（ _该路径在文件系统中实际上不存在_ ），请为静态目录指定前缀路径，如下所示：
 
 ```go
 app.Static("/static", "./public")
@@ -147,11 +147,11 @@ app.Engine.KeepHijackedConns = false
 
 ### 前叉
 
-Prefork选项允许使用[**SO_REUSEPORT**](https://lwn.net/Articles/542629/)套接字选项，该选项在许多操作系统的较新版本中可用，包括**DragonFly BSD**和**Linux** （内核版本**3.9**及更高版本）。这将在同一端口上侦听多个Go进程。
+Prefork选项允许使用[**SO\_REUSEPORT**](https://lwn.net/Articles/542629/)套接字选项，该选项在许多操作系统的较新版本中可用，包括**DragonFly BSD**和**Linux** （内核版本**3.9**及更高版本）。这将在同一端口上侦听多个Go进程。
 
 **NGINX撰写**了一篇有关[Socket Sharding](https://www.nginx.com/blog/socket-sharding-nginx-release-1-9-1/)的精彩文章，这些图片摘自同一篇文章。
 
-![Schema, when Prefork disabled (by default)](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-1-e1432652484191.png)
+![Schema, when Prefork disabled \(by default\)](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-1-e1432652484191.png)
 
 ![Schema, when Prefork enabled](https://cdn.wp.nginx.com/wp-content/uploads/2015/05/Slack-for-iOS-Upload-e1432652376641.png)
 
@@ -185,9 +185,9 @@ app.Server = "Windows 95" // => Server: Windows 95
 
 ### 旗帜
 
-启动Fiber应用程序时，控制台将显示包含程序包版本和监听端口的标语。 *默认情况下启用。*
+启动Fiber应用程序时，控制台将显示包含程序包版本和监听端口的标语。 _默认情况下启用。_
 
-![](../../.gitbook/assets/screenshot-2020-02-08-at-13.18.27.png)
+![](.gitbook/assets/screenshot-2020-02-08-at-13.18.27.png)
 
 要禁用它，请将`Banner`设置为`false` ：
 
@@ -214,7 +214,7 @@ app.Test(req *http.Request) (*http.Response, error)
 app.Get("/", func(c *Ctx) {
   fmt.Println(c.BaseURL())              // => http://google.com
   fmt.Println(c.Get("X-Custom-Header")) // => hi
-  
+
   c.Send("hello, World!")
 })
 
@@ -231,3 +231,4 @@ if resp.StatusCode == 200 {
   fmt.Println(string(body)) // => Hello, World!
 }
 ```
+

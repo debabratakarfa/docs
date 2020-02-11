@@ -2,7 +2,7 @@
 description: Ctx结构表示保存HTTP请求和响应的上下文。它具有用于请求查询字符串，参数，正文，HTTP标头等的方法。
 ---
 
-# Context上下文
+# 🧠 上下文
 
 ## 接受
 
@@ -234,7 +234,7 @@ app.Post("/", func(c *fiber.Ctx) {
 
 ## ClearCookie
 
-按**名称**清除**所有**客户端cookie或特定的cookie（ *通过设置过去的过期日期* ）。
+按**名称**清除**所有**客户端cookie或特定的cookie（ _通过设置过去的过期日期_ ）。
 
 **签名**
 
@@ -344,7 +344,7 @@ app.Get("/", func(c *fiber.Ctx) {
 
 从path传输文件作为`attachment` 。
 
-通常，浏览器会提示用户下载。默认情况下， [Content-Disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition)标头的`filename=`参数是path（ *通常显示在浏览器对话框中* ）。
+通常，浏览器会提示用户下载。默认情况下， [Content-Disposition](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition)标头的`filename=`参数是path（ _通常显示在浏览器对话框中_ ）。
 
 使用**filename**参数覆盖此默认值。
 
@@ -1365,3 +1365,4 @@ app.Get("/", func(c *fiber.Ctx) {
   // => <some-struct><name>John</name><stars>50</stars></some-struct>
 })
 ```
+
