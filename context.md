@@ -1,8 +1,7 @@
 ---
 description: >-
-  Структура Ctx представляет Контекст, который содержит HTTP-запрос и ответ. У
-  этого есть методы для строки запроса запроса, параметров, тела, заголовков
-  HTTP и так далее.
+  Структура Ctx представляет контекст, который содержит HTTP запрос и ответ.
+  Методы для строки запроса, параметров, тела, заголовков HTTP и так далее.
 ---
 
 # 🧠 Контекст
@@ -12,7 +11,7 @@ description: >-
 Проверяет, являются ли указанные **расширения** или **типы** **контента** приемлемыми.
 
 {% hint style="info" %}
-На основе HTTP-заголовка [Accept](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept).
+На основе HTTP заголовка [Accept](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept).
 {% endhint %}
 
 #### **Сигнатура**
@@ -41,7 +40,7 @@ app.Get("/", func(c *fiber.Ctx) {
 Проверяет, является ли указанная **кодировка** приемлемой.
 
 {% hint style="info" %}
-На основе HTTP-заголовка [Accept-Charset](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset).
+На основе HTTP заголовка [Accept-Charset](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Charset).
 {% endhint %}
 
 **Подпись**
@@ -67,7 +66,7 @@ app.Get("/", func(c *fiber.Ctx) {
 Проверяет, является ли указанная **кодировка** приемлемой.
 
 {% hint style="info" %}
-На основе HTTP-заголовка [Accept-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding) запроса.
+На основе HTTP заголовка [Accept-Encoding](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding) запроса.
 {% endhint %}
 
 **Подпись**
@@ -93,7 +92,7 @@ app.Get("/", func(c *fiber.Ctx) {
 Проверяет, является ли указанный **язык** приемлемым.
 
 {% hint style="info" %}
-На основе HTTP-заголовка [Accept-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language) запроса.
+На основе HTTP заголовка [Accept-Language](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language) запроса.
 {% endhint %}
 
 **Подпись**
